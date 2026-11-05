@@ -1,0 +1,1862 @@
+{
+  "comparison": {
+    "all_large": {
+      "approvals_granted": 1,
+      "approvals_rejected": 1,
+      "approvals_requested": 2,
+      "blocked": 1,
+      "escalations": 0,
+      "quality_fail": 0,
+      "quality_pass": 9,
+      "rejected": 1,
+      "status": "partial",
+      "strategy": "all_large",
+      "succeeded": 9,
+      "total_cost_units": 45,
+      "total_tasks": 11,
+      "trace_length": 39,
+      "waves": 4
+    },
+    "all_small": {
+      "approvals_granted": 1,
+      "approvals_rejected": 1,
+      "approvals_requested": 2,
+      "blocked": 1,
+      "escalations": 0,
+      "quality_fail": 5,
+      "quality_pass": 4,
+      "rejected": 1,
+      "status": "partial",
+      "strategy": "all_small",
+      "succeeded": 9,
+      "total_cost_units": 18,
+      "total_tasks": 11,
+      "trace_length": 39,
+      "waves": 4
+    },
+    "routed": {
+      "approvals_granted": 1,
+      "approvals_rejected": 1,
+      "approvals_requested": 2,
+      "blocked": 1,
+      "escalations": 1,
+      "quality_fail": 0,
+      "quality_pass": 9,
+      "rejected": 1,
+      "status": "partial",
+      "strategy": "routed",
+      "succeeded": 9,
+      "total_cost_units": 35,
+      "total_tasks": 11,
+      "trace_length": 42,
+      "waves": 4
+    }
+  },
+  "quality_threshold": 0.8,
+  "scenario": "Deep comparison scenario, 11 tasks, deterministic toy workers, two tiers (small cost 2, large cost 5), quality threshold 0.80, simulated approver rejects D09 only (simulated, not a real human)",
+  "strategies": {
+    "all_large": {
+      "summary": {
+        "approvals_granted": 1,
+        "approvals_rejected": 1,
+        "approvals_requested": 2,
+        "blocked": 1,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9,
+        "rejected": 1,
+        "status": "partial",
+        "strategy": "all_large",
+        "succeeded": 9,
+        "total_cost_units": 45,
+        "total_tasks": 11,
+        "trace_length": 39,
+        "waves": 4
+      },
+      "tasks": [
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [],
+          "difficulty": 1,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 1,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "outline",
+          "output": {
+            "chars": 20,
+            "words": 3
+          },
+          "quality": 0.98,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D01",
+          "wave": 0,
+          "worker": "Planner"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "gather_numbers",
+          "output": {
+            "chars": 30,
+            "words": 6
+          },
+          "quality": 0.97,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D02",
+          "wave": 0,
+          "worker": "Researcher"
+        },
+        {
+          "approval": "rejected",
+          "attempts": 0,
+          "cost_units_total": 0,
+          "dependencies": [],
+          "difficulty": 1,
+          "error": "rejected by approver (simulated)",
+          "escalated": false,
+          "estimated_difficulty": 1,
+          "final_tier": null,
+          "initial_tier": null,
+          "name": "publish_external_summary",
+          "output": null,
+          "quality": null,
+          "quality_pass": false,
+          "requires_approval": true,
+          "status": "rejected",
+          "task_id": "D09",
+          "wave": 0,
+          "worker": "Writer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D01",
+            "D02"
+          ],
+          "difficulty": 3,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 3,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "deep_analysis",
+          "output": {
+            "chars": 37,
+            "words": 7
+          },
+          "quality": 0.95,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D03",
+          "wave": 1,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D01"
+          ],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "chart_spec",
+          "output": {
+            "chars": 28,
+            "words": 5
+          },
+          "quality": 0.97,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D06",
+          "wave": 1,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D02"
+          ],
+          "difficulty": 3,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 1,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "subtle_fact_check",
+          "output": {
+            "chars": 39,
+            "words": 6
+          },
+          "quality": 0.95,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D07",
+          "wave": 1,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 0,
+          "cost_units_total": 0,
+          "dependencies": [
+            "D09"
+          ],
+          "difficulty": 2,
+          "error": "blocked by dependency: D09",
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": null,
+          "initial_tier": null,
+          "name": "external_appendix",
+          "output": null,
+          "quality": null,
+          "quality_pass": false,
+          "requires_approval": false,
+          "status": "blocked",
+          "task_id": "D10",
+          "wave": 1,
+          "worker": "Writer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 4,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 4,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "risk_model",
+          "output": {
+            "chars": 39,
+            "words": 7
+          },
+          "quality": 0.92,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D04",
+          "wave": 2,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 5,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 5,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "hard_proof",
+          "output": {
+            "chars": 41,
+            "words": 8
+          },
+          "quality": 0.88,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D05",
+          "wave": 2,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "approved",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 4,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 4,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "release_review",
+          "output": {
+            "chars": 37,
+            "words": 7
+          },
+          "quality": 0.92,
+          "quality_pass": true,
+          "requires_approval": true,
+          "status": "succeeded",
+          "task_id": "D08",
+          "wave": 2,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D04",
+            "D05",
+            "D08"
+          ],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "assemble_report",
+          "output": {
+            "chars": 30,
+            "words": 4
+          },
+          "quality": 0.97,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D11",
+          "wave": 3,
+          "worker": "Assembler"
+        }
+      ],
+      "trace": [
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 1,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "tier large quality 0.98",
+          "event": "attempt",
+          "seq": 2,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "final quality 0.98, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 3,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "words=3 chars=20",
+          "event": "succeeded",
+          "seq": 4,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 5,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "tier large quality 0.97",
+          "event": "attempt",
+          "seq": 6,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "final quality 0.97, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 7,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "words=6 chars=30",
+          "event": "succeeded",
+          "seq": 8,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "simulated approver rejected task",
+          "event": "approval_rejected",
+          "seq": 9,
+          "task_id": "D09",
+          "wave": 0
+        },
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 10,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "tier large quality 0.95",
+          "event": "attempt",
+          "seq": 11,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.95, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 12,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "words=7 chars=37",
+          "event": "succeeded",
+          "seq": 13,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 14,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "tier large quality 0.97",
+          "event": "attempt",
+          "seq": 15,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.97, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 16,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "words=5 chars=28",
+          "event": "succeeded",
+          "seq": 17,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 18,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "tier large quality 0.95",
+          "event": "attempt",
+          "seq": 19,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.95, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 20,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "words=6 chars=39",
+          "event": "succeeded",
+          "seq": 21,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "blocked by dependency: D09",
+          "event": "blocked",
+          "seq": 22,
+          "task_id": "D10",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 23,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "tier large quality 0.92",
+          "event": "attempt",
+          "seq": 24,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.92, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 25,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "words=7 chars=39",
+          "event": "succeeded",
+          "seq": 26,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 27,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "tier large quality 0.88",
+          "event": "attempt",
+          "seq": 28,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.88, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 29,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "words=8 chars=41",
+          "event": "succeeded",
+          "seq": 30,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "simulated approver approved task",
+          "event": "approval_granted",
+          "seq": 31,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 32,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "tier large quality 0.92",
+          "event": "attempt",
+          "seq": 33,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.92, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 34,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "words=7 chars=37",
+          "event": "succeeded",
+          "seq": 35,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier large under strategy all_large",
+          "event": "routed",
+          "seq": 36,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "tier large quality 0.97",
+          "event": "attempt",
+          "seq": 37,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "final quality 0.97, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 38,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "words=4 chars=30",
+          "event": "succeeded",
+          "seq": 39,
+          "task_id": "D11",
+          "wave": 3
+        }
+      ],
+      "waves": [
+        [
+          "D01",
+          "D02",
+          "D09"
+        ],
+        [
+          "D03",
+          "D06",
+          "D07",
+          "D10"
+        ],
+        [
+          "D04",
+          "D05",
+          "D08"
+        ],
+        [
+          "D11"
+        ]
+      ]
+    },
+    "all_small": {
+      "summary": {
+        "approvals_granted": 1,
+        "approvals_rejected": 1,
+        "approvals_requested": 2,
+        "blocked": 1,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4,
+        "rejected": 1,
+        "status": "partial",
+        "strategy": "all_small",
+        "succeeded": 9,
+        "total_cost_units": 18,
+        "total_tasks": 11,
+        "trace_length": 39,
+        "waves": 4
+      },
+      "tasks": [
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [],
+          "difficulty": 1,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 1,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "outline",
+          "output": {
+            "chars": 20,
+            "words": 3
+          },
+          "quality": 0.95,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D01",
+          "wave": 0,
+          "worker": "Planner"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "gather_numbers",
+          "output": {
+            "chars": 30,
+            "words": 6
+          },
+          "quality": 0.9,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D02",
+          "wave": 0,
+          "worker": "Researcher"
+        },
+        {
+          "approval": "rejected",
+          "attempts": 0,
+          "cost_units_total": 0,
+          "dependencies": [],
+          "difficulty": 1,
+          "error": "rejected by approver (simulated)",
+          "escalated": false,
+          "estimated_difficulty": 1,
+          "final_tier": null,
+          "initial_tier": null,
+          "name": "publish_external_summary",
+          "output": null,
+          "quality": null,
+          "quality_pass": false,
+          "requires_approval": true,
+          "status": "rejected",
+          "task_id": "D09",
+          "wave": 0,
+          "worker": "Writer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D01",
+            "D02"
+          ],
+          "difficulty": 3,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 3,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "deep_analysis",
+          "output": {
+            "chars": 37,
+            "words": 7
+          },
+          "quality": 0.7,
+          "quality_pass": false,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D03",
+          "wave": 1,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D01"
+          ],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "chart_spec",
+          "output": {
+            "chars": 28,
+            "words": 5
+          },
+          "quality": 0.9,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D06",
+          "wave": 1,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D02"
+          ],
+          "difficulty": 3,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 1,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "subtle_fact_check",
+          "output": {
+            "chars": 39,
+            "words": 6
+          },
+          "quality": 0.7,
+          "quality_pass": false,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D07",
+          "wave": 1,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 0,
+          "cost_units_total": 0,
+          "dependencies": [
+            "D09"
+          ],
+          "difficulty": 2,
+          "error": "blocked by dependency: D09",
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": null,
+          "initial_tier": null,
+          "name": "external_appendix",
+          "output": null,
+          "quality": null,
+          "quality_pass": false,
+          "requires_approval": false,
+          "status": "blocked",
+          "task_id": "D10",
+          "wave": 1,
+          "worker": "Writer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 4,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 4,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "risk_model",
+          "output": {
+            "chars": 39,
+            "words": 7
+          },
+          "quality": 0.55,
+          "quality_pass": false,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D04",
+          "wave": 2,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 5,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 5,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "hard_proof",
+          "output": {
+            "chars": 41,
+            "words": 8
+          },
+          "quality": 0.4,
+          "quality_pass": false,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D05",
+          "wave": 2,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "approved",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 4,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 4,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "release_review",
+          "output": {
+            "chars": 37,
+            "words": 7
+          },
+          "quality": 0.55,
+          "quality_pass": false,
+          "requires_approval": true,
+          "status": "succeeded",
+          "task_id": "D08",
+          "wave": 2,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D04",
+            "D05",
+            "D08"
+          ],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "assemble_report",
+          "output": {
+            "chars": 30,
+            "words": 4
+          },
+          "quality": 0.9,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D11",
+          "wave": 3,
+          "worker": "Assembler"
+        }
+      ],
+      "trace": [
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 1,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "tier small quality 0.95",
+          "event": "attempt",
+          "seq": 2,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "final quality 0.95, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 3,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "words=3 chars=20",
+          "event": "succeeded",
+          "seq": 4,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 5,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "tier small quality 0.90",
+          "event": "attempt",
+          "seq": 6,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "final quality 0.90, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 7,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "words=6 chars=30",
+          "event": "succeeded",
+          "seq": 8,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "simulated approver rejected task",
+          "event": "approval_rejected",
+          "seq": 9,
+          "task_id": "D09",
+          "wave": 0
+        },
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 10,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "tier small quality 0.70",
+          "event": "attempt",
+          "seq": 11,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.70, threshold 0.80",
+          "event": "quality_check_failed",
+          "seq": 12,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "words=7 chars=37",
+          "event": "succeeded",
+          "seq": 13,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 14,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "tier small quality 0.90",
+          "event": "attempt",
+          "seq": 15,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.90, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 16,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "words=5 chars=28",
+          "event": "succeeded",
+          "seq": 17,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 18,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "tier small quality 0.70",
+          "event": "attempt",
+          "seq": 19,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.70, threshold 0.80",
+          "event": "quality_check_failed",
+          "seq": 20,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "words=6 chars=39",
+          "event": "succeeded",
+          "seq": 21,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "blocked by dependency: D09",
+          "event": "blocked",
+          "seq": 22,
+          "task_id": "D10",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 23,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "tier small quality 0.55",
+          "event": "attempt",
+          "seq": 24,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.55, threshold 0.80",
+          "event": "quality_check_failed",
+          "seq": 25,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "words=7 chars=39",
+          "event": "succeeded",
+          "seq": 26,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 27,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "tier small quality 0.40",
+          "event": "attempt",
+          "seq": 28,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.40, threshold 0.80",
+          "event": "quality_check_failed",
+          "seq": 29,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "words=8 chars=41",
+          "event": "succeeded",
+          "seq": 30,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "simulated approver approved task",
+          "event": "approval_granted",
+          "seq": 31,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 32,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "tier small quality 0.55",
+          "event": "attempt",
+          "seq": 33,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.55, threshold 0.80",
+          "event": "quality_check_failed",
+          "seq": 34,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "words=7 chars=37",
+          "event": "succeeded",
+          "seq": 35,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier small under strategy all_small",
+          "event": "routed",
+          "seq": 36,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "tier small quality 0.90",
+          "event": "attempt",
+          "seq": 37,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "final quality 0.90, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 38,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "words=4 chars=30",
+          "event": "succeeded",
+          "seq": 39,
+          "task_id": "D11",
+          "wave": 3
+        }
+      ],
+      "waves": [
+        [
+          "D01",
+          "D02",
+          "D09"
+        ],
+        [
+          "D03",
+          "D06",
+          "D07",
+          "D10"
+        ],
+        [
+          "D04",
+          "D05",
+          "D08"
+        ],
+        [
+          "D11"
+        ]
+      ]
+    },
+    "routed": {
+      "summary": {
+        "approvals_granted": 1,
+        "approvals_rejected": 1,
+        "approvals_requested": 2,
+        "blocked": 1,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9,
+        "rejected": 1,
+        "status": "partial",
+        "strategy": "routed",
+        "succeeded": 9,
+        "total_cost_units": 35,
+        "total_tasks": 11,
+        "trace_length": 42,
+        "waves": 4
+      },
+      "tasks": [
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [],
+          "difficulty": 1,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 1,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "outline",
+          "output": {
+            "chars": 20,
+            "words": 3
+          },
+          "quality": 0.95,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D01",
+          "wave": 0,
+          "worker": "Planner"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "gather_numbers",
+          "output": {
+            "chars": 30,
+            "words": 6
+          },
+          "quality": 0.9,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D02",
+          "wave": 0,
+          "worker": "Researcher"
+        },
+        {
+          "approval": "rejected",
+          "attempts": 0,
+          "cost_units_total": 0,
+          "dependencies": [],
+          "difficulty": 1,
+          "error": "rejected by approver (simulated)",
+          "escalated": false,
+          "estimated_difficulty": 1,
+          "final_tier": null,
+          "initial_tier": null,
+          "name": "publish_external_summary",
+          "output": null,
+          "quality": null,
+          "quality_pass": false,
+          "requires_approval": true,
+          "status": "rejected",
+          "task_id": "D09",
+          "wave": 0,
+          "worker": "Writer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D01",
+            "D02"
+          ],
+          "difficulty": 3,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 3,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "deep_analysis",
+          "output": {
+            "chars": 37,
+            "words": 7
+          },
+          "quality": 0.95,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D03",
+          "wave": 1,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D01"
+          ],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "chart_spec",
+          "output": {
+            "chars": 28,
+            "words": 5
+          },
+          "quality": 0.9,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D06",
+          "wave": 1,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 2,
+          "cost_units_total": 7,
+          "dependencies": [
+            "D02"
+          ],
+          "difficulty": 3,
+          "error": null,
+          "escalated": true,
+          "estimated_difficulty": 1,
+          "final_tier": "large",
+          "initial_tier": "small",
+          "name": "subtle_fact_check",
+          "output": {
+            "chars": 39,
+            "words": 6
+          },
+          "quality": 0.95,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D07",
+          "wave": 1,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 0,
+          "cost_units_total": 0,
+          "dependencies": [
+            "D09"
+          ],
+          "difficulty": 2,
+          "error": "blocked by dependency: D09",
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": null,
+          "initial_tier": null,
+          "name": "external_appendix",
+          "output": null,
+          "quality": null,
+          "quality_pass": false,
+          "requires_approval": false,
+          "status": "blocked",
+          "task_id": "D10",
+          "wave": 1,
+          "worker": "Writer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 4,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 4,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "risk_model",
+          "output": {
+            "chars": 39,
+            "words": 7
+          },
+          "quality": 0.92,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D04",
+          "wave": 2,
+          "worker": "Analyst"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 5,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 5,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "hard_proof",
+          "output": {
+            "chars": 41,
+            "words": 8
+          },
+          "quality": 0.88,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D05",
+          "wave": 2,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "approved",
+          "attempts": 1,
+          "cost_units_total": 5,
+          "dependencies": [
+            "D03"
+          ],
+          "difficulty": 4,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 4,
+          "final_tier": "large",
+          "initial_tier": "large",
+          "name": "release_review",
+          "output": {
+            "chars": 37,
+            "words": 7
+          },
+          "quality": 0.92,
+          "quality_pass": true,
+          "requires_approval": true,
+          "status": "succeeded",
+          "task_id": "D08",
+          "wave": 2,
+          "worker": "Reviewer"
+        },
+        {
+          "approval": "not_required",
+          "attempts": 1,
+          "cost_units_total": 2,
+          "dependencies": [
+            "D04",
+            "D05",
+            "D08"
+          ],
+          "difficulty": 2,
+          "error": null,
+          "escalated": false,
+          "estimated_difficulty": 2,
+          "final_tier": "small",
+          "initial_tier": "small",
+          "name": "assemble_report",
+          "output": {
+            "chars": 30,
+            "words": 4
+          },
+          "quality": 0.9,
+          "quality_pass": true,
+          "requires_approval": false,
+          "status": "succeeded",
+          "task_id": "D11",
+          "wave": 3,
+          "worker": "Assembler"
+        }
+      ],
+      "trace": [
+        {
+          "detail": "initial tier small under strategy routed",
+          "event": "routed",
+          "seq": 1,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "tier small quality 0.95",
+          "event": "attempt",
+          "seq": 2,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "final quality 0.95, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 3,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "words=3 chars=20",
+          "event": "succeeded",
+          "seq": 4,
+          "task_id": "D01",
+          "wave": 0
+        },
+        {
+          "detail": "initial tier small under strategy routed",
+          "event": "routed",
+          "seq": 5,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "tier small quality 0.90",
+          "event": "attempt",
+          "seq": 6,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "final quality 0.90, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 7,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "words=6 chars=30",
+          "event": "succeeded",
+          "seq": 8,
+          "task_id": "D02",
+          "wave": 0
+        },
+        {
+          "detail": "simulated approver rejected task",
+          "event": "approval_rejected",
+          "seq": 9,
+          "task_id": "D09",
+          "wave": 0
+        },
+        {
+          "detail": "initial tier large under strategy routed",
+          "event": "routed",
+          "seq": 10,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "tier large quality 0.95",
+          "event": "attempt",
+          "seq": 11,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.95, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 12,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "words=7 chars=37",
+          "event": "succeeded",
+          "seq": 13,
+          "task_id": "D03",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier small under strategy routed",
+          "event": "routed",
+          "seq": 14,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "tier small quality 0.90",
+          "event": "attempt",
+          "seq": 15,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.90, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 16,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "words=5 chars=28",
+          "event": "succeeded",
+          "seq": 17,
+          "task_id": "D06",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier small under strategy routed",
+          "event": "routed",
+          "seq": 18,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "tier small quality 0.70",
+          "event": "attempt",
+          "seq": 19,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "quality 0.70 below threshold 0.80",
+          "event": "quality_check_failed",
+          "seq": 20,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "escalated once to large tier",
+          "event": "escalated",
+          "seq": 21,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "tier large quality 0.95",
+          "event": "attempt",
+          "seq": 22,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "final quality 0.95, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 23,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "words=6 chars=39",
+          "event": "succeeded",
+          "seq": 24,
+          "task_id": "D07",
+          "wave": 1
+        },
+        {
+          "detail": "blocked by dependency: D09",
+          "event": "blocked",
+          "seq": 25,
+          "task_id": "D10",
+          "wave": 1
+        },
+        {
+          "detail": "initial tier large under strategy routed",
+          "event": "routed",
+          "seq": 26,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "tier large quality 0.92",
+          "event": "attempt",
+          "seq": 27,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.92, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 28,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "words=7 chars=39",
+          "event": "succeeded",
+          "seq": 29,
+          "task_id": "D04",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier large under strategy routed",
+          "event": "routed",
+          "seq": 30,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "tier large quality 0.88",
+          "event": "attempt",
+          "seq": 31,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.88, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 32,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "words=8 chars=41",
+          "event": "succeeded",
+          "seq": 33,
+          "task_id": "D05",
+          "wave": 2
+        },
+        {
+          "detail": "simulated approver approved task",
+          "event": "approval_granted",
+          "seq": 34,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier large under strategy routed",
+          "event": "routed",
+          "seq": 35,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "tier large quality 0.92",
+          "event": "attempt",
+          "seq": 36,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "final quality 0.92, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 37,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "words=7 chars=37",
+          "event": "succeeded",
+          "seq": 38,
+          "task_id": "D08",
+          "wave": 2
+        },
+        {
+          "detail": "initial tier small under strategy routed",
+          "event": "routed",
+          "seq": 39,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "tier small quality 0.90",
+          "event": "attempt",
+          "seq": 40,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "final quality 0.90, threshold 0.80",
+          "event": "quality_check_passed",
+          "seq": 41,
+          "task_id": "D11",
+          "wave": 3
+        },
+        {
+          "detail": "words=4 chars=30",
+          "event": "succeeded",
+          "seq": 42,
+          "task_id": "D11",
+          "wave": 3
+        }
+      ],
+      "waves": [
+        [
+          "D01",
+          "D02",
+          "D09"
+        ],
+        [
+          "D03",
+          "D06",
+          "D07",
+          "D10"
+        ],
+        [
+          "D04",
+          "D05",
+          "D08"
+        ],
+        [
+          "D11"
+        ]
+      ]
+    }
+  }
+}
