@@ -61,6 +61,28 @@ The remaining v2 Deep scope is the v1.1 backlog in ROADMAP.md.
 
 PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
 
+## Fan-out
+
+Written fan-out set for v1.0, dated 2026-11-05, in fanout/:
+
+- fanout/blog-post.md: "Many Hands, One Graph", the full
+  story with the main results claim gated by Jev claim_check
+  (model jev-1.13.0, noul 0.68, route REVIEW, no block).
+- fanout/tutorial.md: course module P08-orchestrator-lab. Every
+  command in it was executed and passed on 2026-11-05 (all three
+  runners, full suite at 65 tests).
+- fanout/website-page.md: project page copy only, not published.
+- fanout/linkedin-post.md: DRAFT NOT POSTED, link as the
+  first-comment line per the LinkedIn rule.
+- fanout/paper-candidate.md: cost and quality routing study at
+  CANDIDATE. Submission is Jesun's tap, nothing submitted.
+- fanout/release-notes.md: draft notes for the live releases
+  v0.1, v0.5, and v1.0.
+
+Publicity grades and the channel log are in PUBLICITY.md. Overall
+fan-out grade: 9,533 of 10,000. The loop never posts to social:
+all social channels are held with named reasons in PUBLICITY.md.
+
 ## License
 
 Code: Apache-2.0 (see LICENSE). Tutorials: CC BY 4.0. Ruled in D-V3-11, 2026-11-04.
