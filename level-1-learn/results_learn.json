@@ -1,0 +1,332 @@
+{
+  "scenario": "report-building job, 10 tasks, deterministic toy workers",
+  "summary": {
+    "blocked": 1,
+    "failed": 1,
+    "retries_used": 1,
+    "status": "partial",
+    "succeeded": 8,
+    "total_attempts": 10,
+    "total_cost_units": 28,
+    "total_steps_used": 13,
+    "total_tasks": 10,
+    "trace_length": 11,
+    "waves": 4
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 2,
+      "dependencies": [],
+      "error": null,
+      "name": "outline",
+      "output": {
+        "chars": 20,
+        "words": 3
+      },
+      "retries_used": 0,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "T01",
+      "wave": 0,
+      "worker": "Planner"
+    },
+    {
+      "attempts": 1,
+      "cost_units_per_attempt": 3,
+      "cost_units_total": 3,
+      "dependencies": [],
+      "error": null,
+      "name": "gather_numbers",
+      "output": {
+        "chars": 30,
+        "words": 6
+      },
+      "retries_used": 0,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 2,
+      "task_id": "T02",
+      "wave": 0,
+      "worker": "Researcher"
+    },
+    {
+      "attempts": 1,
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 2,
+      "dependencies": [],
+      "error": null,
+      "name": "gather_quotes",
+      "output": {
+        "chars": 18,
+        "words": 3
+      },
+      "retries_used": 0,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "T03",
+      "wave": 0,
+      "worker": "Researcher"
+    },
+    {
+      "attempts": 1,
+      "cost_units_per_attempt": 3,
+      "cost_units_total": 3,
+      "dependencies": [
+        "T01"
+      ],
+      "error": null,
+      "name": "draft_intro",
+      "output": {
+        "chars": 32,
+        "words": 5
+      },
+      "retries_used": 0,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 2,
+      "task_id": "T04",
+      "wave": 1,
+      "worker": "Writer"
+    },
+    {
+      "attempts": 2,
+      "cost_units_per_attempt": 4,
+      "cost_units_total": 8,
+      "dependencies": [
+        "T01",
+        "T02"
+      ],
+      "error": null,
+      "name": "analyse_trend",
+      "output": {
+        "chars": 27,
+        "words": 5
+      },
+      "retries_used": 1,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 2,
+      "task_id": "T05",
+      "wave": 1,
+      "worker": "Analyst"
+    },
+    {
+      "attempts": 1,
+      "cost_units_per_attempt": 3,
+      "cost_units_total": 3,
+      "dependencies": [
+        "T02"
+      ],
+      "error": null,
+      "name": "chart_spec",
+      "output": {
+        "chars": 28,
+        "words": 5
+      },
+      "retries_used": 0,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "T06",
+      "wave": 1,
+      "worker": "Analyst"
+    },
+    {
+      "attempts": 1,
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 2,
+      "dependencies": [
+        "T04",
+        "T05"
+      ],
+      "error": null,
+      "name": "fact_check",
+      "output": {
+        "chars": 22,
+        "words": 4
+      },
+      "retries_used": 0,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "T07",
+      "wave": 2,
+      "worker": "Reviewer"
+    },
+    {
+      "attempts": 1,
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 2,
+      "dependencies": [
+        "T03",
+        "T06"
+      ],
+      "error": "step budget exceeded: needs 3 steps, budget is 2",
+      "name": "verify_source",
+      "output": null,
+      "retries_used": 0,
+      "status": "failed",
+      "step_budget": 2,
+      "steps_used": 2,
+      "task_id": "T08",
+      "wave": 2,
+      "worker": "Reviewer"
+    },
+    {
+      "attempts": 0,
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 0,
+      "dependencies": [
+        "T08"
+      ],
+      "error": "blocked by dependency: T08",
+      "name": "appendix",
+      "output": null,
+      "retries_used": 0,
+      "status": "blocked",
+      "step_budget": 3,
+      "steps_used": 0,
+      "task_id": "T09",
+      "wave": 3,
+      "worker": "Writer"
+    },
+    {
+      "attempts": 1,
+      "cost_units_per_attempt": 3,
+      "cost_units_total": 3,
+      "dependencies": [
+        "T04",
+        "T05",
+        "T06",
+        "T07"
+      ],
+      "error": null,
+      "name": "assemble_report",
+      "output": {
+        "chars": 30,
+        "words": 4
+      },
+      "retries_used": 0,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "T10",
+      "wave": 3,
+      "worker": "Assembler"
+    }
+  ],
+  "trace": [
+    {
+      "attempt": 1,
+      "detail": "words=3 chars=20",
+      "event": "attempt_succeeded",
+      "seq": 1,
+      "task_id": "T01",
+      "wave": 0
+    },
+    {
+      "attempt": 1,
+      "detail": "words=6 chars=30",
+      "event": "attempt_succeeded",
+      "seq": 2,
+      "task_id": "T02",
+      "wave": 0
+    },
+    {
+      "attempt": 1,
+      "detail": "words=3 chars=18",
+      "event": "attempt_succeeded",
+      "seq": 3,
+      "task_id": "T03",
+      "wave": 0
+    },
+    {
+      "attempt": 1,
+      "detail": "words=5 chars=32",
+      "event": "attempt_succeeded",
+      "seq": 4,
+      "task_id": "T04",
+      "wave": 1
+    },
+    {
+      "attempt": 1,
+      "detail": "flaky failure on attempt 1 (deterministic, by design)",
+      "event": "attempt_failed",
+      "seq": 5,
+      "task_id": "T05",
+      "wave": 1
+    },
+    {
+      "attempt": 2,
+      "detail": "words=5 chars=27",
+      "event": "attempt_succeeded",
+      "seq": 6,
+      "task_id": "T05",
+      "wave": 1
+    },
+    {
+      "attempt": 1,
+      "detail": "words=5 chars=28",
+      "event": "attempt_succeeded",
+      "seq": 7,
+      "task_id": "T06",
+      "wave": 1
+    },
+    {
+      "attempt": 1,
+      "detail": "words=4 chars=22",
+      "event": "attempt_succeeded",
+      "seq": 8,
+      "task_id": "T07",
+      "wave": 2
+    },
+    {
+      "attempt": 1,
+      "detail": "step budget exceeded: needs 3 steps, budget is 2",
+      "event": "attempt_failed",
+      "seq": 9,
+      "task_id": "T08",
+      "wave": 2
+    },
+    {
+      "attempt": 0,
+      "detail": "blocked by dependency: T08",
+      "event": "blocked",
+      "seq": 10,
+      "task_id": "T09",
+      "wave": 3
+    },
+    {
+      "attempt": 1,
+      "detail": "words=4 chars=30",
+      "event": "attempt_succeeded",
+      "seq": 11,
+      "task_id": "T10",
+      "wave": 3
+    }
+  ],
+  "waves": [
+    [
+      "T01",
+      "T02",
+      "T03"
+    ],
+    [
+      "T04",
+      "T05",
+      "T06"
+    ],
+    [
+      "T07",
+      "T08"
+    ],
+    [
+      "T09",
+      "T10"
+    ]
+  ]
+}
