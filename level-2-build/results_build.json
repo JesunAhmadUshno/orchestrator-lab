@@ -1,0 +1,458 @@
+{
+  "scenario": "parallel report pipeline, 12 tasks, deterministic toy workers, real thread pool, wall clock timeouts",
+  "summary": {
+    "blocked": 2,
+    "failed": 2,
+    "max_workers": 4,
+    "retries_used": 3,
+    "status": "partial",
+    "succeeded": 8,
+    "timeout_attempts": 3,
+    "total_attempts": 13,
+    "total_backoff_delay_seconds": 0.04,
+    "total_cost_units": 34,
+    "total_steps_used": 13,
+    "total_tasks": 12,
+    "trace_length": 15,
+    "waves": 4
+  },
+  "tasks": [
+    {
+      "attempts": 1,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 2,
+      "dependencies": [],
+      "error": null,
+      "name": "outline",
+      "output": {
+        "chars": 20,
+        "words": 3
+      },
+      "retries_used": 0,
+      "sleep_seconds": 0.2,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "B01",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 0,
+      "worker": "Planner"
+    },
+    {
+      "attempts": 1,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 3,
+      "cost_units_total": 3,
+      "dependencies": [],
+      "error": null,
+      "name": "gather_numbers",
+      "output": {
+        "chars": 30,
+        "words": 6
+      },
+      "retries_used": 0,
+      "sleep_seconds": 0.2,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 2,
+      "task_id": "B02",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 0,
+      "worker": "Researcher"
+    },
+    {
+      "attempts": 1,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 2,
+      "dependencies": [],
+      "error": null,
+      "name": "gather_quotes",
+      "output": {
+        "chars": 18,
+        "words": 3
+      },
+      "retries_used": 0,
+      "sleep_seconds": 0.2,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "B03",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 0,
+      "worker": "Researcher"
+    },
+    {
+      "attempts": 1,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 3,
+      "cost_units_total": 3,
+      "dependencies": [
+        "B01"
+      ],
+      "error": null,
+      "name": "draft_intro",
+      "output": {
+        "chars": 32,
+        "words": 5
+      },
+      "retries_used": 0,
+      "sleep_seconds": 0.2,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 2,
+      "task_id": "B04",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 1,
+      "worker": "Writer"
+    },
+    {
+      "attempts": 2,
+      "backoff_delays_seconds": [
+        0.01
+      ],
+      "cost_units_per_attempt": 4,
+      "cost_units_total": 8,
+      "dependencies": [
+        "B01",
+        "B02"
+      ],
+      "error": null,
+      "name": "analyse_trend",
+      "output": {
+        "chars": 27,
+        "words": 5
+      },
+      "retries_used": 1,
+      "sleep_seconds": 0.05,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 2,
+      "task_id": "B05",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 1,
+      "worker": "Analyst"
+    },
+    {
+      "attempts": 1,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 3,
+      "cost_units_total": 3,
+      "dependencies": [
+        "B02"
+      ],
+      "error": null,
+      "name": "chart_spec",
+      "output": {
+        "chars": 28,
+        "words": 5
+      },
+      "retries_used": 0,
+      "sleep_seconds": 0.2,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "B06",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 1,
+      "worker": "Analyst"
+    },
+    {
+      "attempts": 3,
+      "backoff_delays_seconds": [
+        0.01,
+        0.02
+      ],
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 6,
+      "dependencies": [
+        "B03"
+      ],
+      "error": "timeout: attempt exceeded 0.10 seconds",
+      "name": "slow_source",
+      "output": null,
+      "retries_used": 2,
+      "sleep_seconds": 0.5,
+      "status": "failed",
+      "step_budget": 3,
+      "steps_used": 0,
+      "task_id": "B07",
+      "timeout_attempts": 3,
+      "timeout_seconds": 0.1,
+      "wave": 1,
+      "worker": "Reviewer"
+    },
+    {
+      "attempts": 1,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 2,
+      "dependencies": [
+        "B03",
+        "B06"
+      ],
+      "error": "step budget exceeded: needs 3 steps, budget is 2",
+      "name": "verify_source",
+      "output": null,
+      "retries_used": 0,
+      "sleep_seconds": 0.05,
+      "status": "failed",
+      "step_budget": 2,
+      "steps_used": 2,
+      "task_id": "B08",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 2,
+      "worker": "Reviewer"
+    },
+    {
+      "attempts": 0,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 0,
+      "dependencies": [
+        "B07"
+      ],
+      "error": "blocked by dependency: B07",
+      "name": "appendix",
+      "output": null,
+      "retries_used": 0,
+      "sleep_seconds": 0.05,
+      "status": "blocked",
+      "step_budget": 3,
+      "steps_used": 0,
+      "task_id": "B09",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 2,
+      "worker": "Writer"
+    },
+    {
+      "attempts": 1,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 2,
+      "dependencies": [
+        "B04",
+        "B05"
+      ],
+      "error": null,
+      "name": "fact_check",
+      "output": {
+        "chars": 22,
+        "words": 4
+      },
+      "retries_used": 0,
+      "sleep_seconds": 0.05,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "B10",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 2,
+      "worker": "Reviewer"
+    },
+    {
+      "attempts": 0,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 2,
+      "cost_units_total": 0,
+      "dependencies": [
+        "B08"
+      ],
+      "error": "blocked by dependency: B08",
+      "name": "source_appendix",
+      "output": null,
+      "retries_used": 0,
+      "sleep_seconds": 0.05,
+      "status": "blocked",
+      "step_budget": 3,
+      "steps_used": 0,
+      "task_id": "B11",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 3,
+      "worker": "Writer"
+    },
+    {
+      "attempts": 1,
+      "backoff_delays_seconds": [],
+      "cost_units_per_attempt": 3,
+      "cost_units_total": 3,
+      "dependencies": [
+        "B04",
+        "B05",
+        "B06",
+        "B10"
+      ],
+      "error": null,
+      "name": "assemble_report",
+      "output": {
+        "chars": 30,
+        "words": 4
+      },
+      "retries_used": 0,
+      "sleep_seconds": 0.05,
+      "status": "succeeded",
+      "step_budget": 3,
+      "steps_used": 1,
+      "task_id": "B12",
+      "timeout_attempts": 0,
+      "timeout_seconds": 2.0,
+      "wave": 3,
+      "worker": "Assembler"
+    }
+  ],
+  "trace": [
+    {
+      "attempt": 1,
+      "detail": "words=3 chars=20",
+      "event": "attempt_succeeded",
+      "seq": 1,
+      "task_id": "B01",
+      "wave": 0
+    },
+    {
+      "attempt": 1,
+      "detail": "words=6 chars=30",
+      "event": "attempt_succeeded",
+      "seq": 2,
+      "task_id": "B02",
+      "wave": 0
+    },
+    {
+      "attempt": 1,
+      "detail": "words=3 chars=18",
+      "event": "attempt_succeeded",
+      "seq": 3,
+      "task_id": "B03",
+      "wave": 0
+    },
+    {
+      "attempt": 1,
+      "detail": "words=5 chars=32",
+      "event": "attempt_succeeded",
+      "seq": 4,
+      "task_id": "B04",
+      "wave": 1
+    },
+    {
+      "attempt": 1,
+      "detail": "transient failure on attempt 1 (deterministic, by design)",
+      "event": "attempt_failed",
+      "seq": 5,
+      "task_id": "B05",
+      "wave": 1
+    },
+    {
+      "attempt": 2,
+      "detail": "words=5 chars=27",
+      "event": "attempt_succeeded",
+      "seq": 6,
+      "task_id": "B05",
+      "wave": 1
+    },
+    {
+      "attempt": 1,
+      "detail": "words=5 chars=28",
+      "event": "attempt_succeeded",
+      "seq": 7,
+      "task_id": "B06",
+      "wave": 1
+    },
+    {
+      "attempt": 1,
+      "detail": "timeout: attempt exceeded 0.10 seconds",
+      "event": "attempt_timeout",
+      "seq": 8,
+      "task_id": "B07",
+      "wave": 1
+    },
+    {
+      "attempt": 2,
+      "detail": "timeout: attempt exceeded 0.10 seconds",
+      "event": "attempt_timeout",
+      "seq": 9,
+      "task_id": "B07",
+      "wave": 1
+    },
+    {
+      "attempt": 3,
+      "detail": "timeout: attempt exceeded 0.10 seconds",
+      "event": "attempt_timeout",
+      "seq": 10,
+      "task_id": "B07",
+      "wave": 1
+    },
+    {
+      "attempt": 1,
+      "detail": "step budget exceeded: needs 3 steps, budget is 2",
+      "event": "attempt_failed",
+      "seq": 11,
+      "task_id": "B08",
+      "wave": 2
+    },
+    {
+      "attempt": 0,
+      "detail": "blocked by dependency: B07",
+      "event": "blocked",
+      "seq": 12,
+      "task_id": "B09",
+      "wave": 2
+    },
+    {
+      "attempt": 1,
+      "detail": "words=4 chars=22",
+      "event": "attempt_succeeded",
+      "seq": 13,
+      "task_id": "B10",
+      "wave": 2
+    },
+    {
+      "attempt": 0,
+      "detail": "blocked by dependency: B08",
+      "event": "blocked",
+      "seq": 14,
+      "task_id": "B11",
+      "wave": 3
+    },
+    {
+      "attempt": 1,
+      "detail": "words=4 chars=30",
+      "event": "attempt_succeeded",
+      "seq": 15,
+      "task_id": "B12",
+      "wave": 3
+    }
+  ],
+  "waves": [
+    [
+      "B01",
+      "B02",
+      "B03"
+    ],
+    [
+      "B04",
+      "B05",
+      "B06",
+      "B07"
+    ],
+    [
+      "B08",
+      "B09",
+      "B10"
+    ],
+    [
+      "B11",
+      "B12"
+    ]
+  ]
+}
