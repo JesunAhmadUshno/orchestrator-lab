@@ -2,8 +2,8 @@
 
 Multi-agent orchestration: one supervisor, a task graph, parallel workers, cost and quality routing.
 
-Status: Learn and Build DONE (2026-11-05, ROADMAP-V3-BATCH). Levels 1 and 2 are built, tested, and measured below. Deep is not started.
-Project: P08. Fleet node: BlackBoxV2. Wave: Wave 4. Learn was run on the Muse VM (CPU); see the level README for the named deduction.
+Status: Learn, Build, and Deep DONE (2026-11-05, ROADMAP-V3-BATCH). All three levels are built, tested, and measured below. v1.0 shipped.
+Project: P08. Fleet node: BlackBoxV2. Wave: Wave 4. All levels were run on the Muse VM (CPU); see the level READMEs for the named deduction.
 
 ## Start here
 
@@ -40,6 +40,22 @@ Measured 2026-11-05 with level-1-learn/run_learn.py on the Muse VM, Python 3.12.
 | Build steps / trace | 13 steps used, 15 trace entries, backoff delays 0.04 seconds in total, run status partial |
 | Build unit tests | 39 passed in total (20 new Build tests plus 19 Learn tests), plus the scaffold smoke test |
 | Build determinism | results_build.json identical across two runs (sha256 3896acf5b5f9babe) |
+| Deep scenario tasks | 11 tasks in 4 waves, three strategies compared |
+| Deep routed | cost 35 units, 9 of 9 executed tasks pass quality, 1 escalation |
+| Deep all_large | cost 45 units, 9 quality passes, 0 escalations |
+| Deep all_small | cost 18 units, 4 quality passes, 5 quality fails, 0 escalations |
+| Deep approvals | 2 requested, 1 granted, 1 rejected in every strategy; 1 task rejected, 1 blocked |
+| Deep unit tests | 65 passed in total (26 new Deep tests plus 39 earlier tests), plus the scaffold smoke test |
+| Deep determinism | results_deep.json identical across two runs (sha256 399d9c659dd12825) |
+| Deep grade | 8,200 of 10,000 (deductions in level-3-deep/README.md) |
+
+## Deep
+
+Deep adds cost and quality routing, human approval gates, and full run traces. The router sees estimated difficulty only: at most 2 routes to the small tier (cost 2), above 2 routes to the large tier (cost 5). A small tier output below the 0.80 quality threshold escalates once to the large tier, with the escalation recorded. Tasks flagged requires_approval are paused for an approver callback; the runner uses a deterministic simulated approver (labelled simulated, not a real human) that rejects D09 only, so D09 is rejected and its dependent D10 is blocked.
+
+Main claim: Deep ran one deterministic 11-task scenario under three strategies on the Muse VM: routed cost 35 units with 9 of 9 executed tasks passing the 0.80 quality threshold and 1 escalation, against all_large at 45 units with 9 passes and all_small at 18 units with 4 passes and 5 quality fails; in every strategy 2 approvals were requested, 1 granted, 1 rejected, with 1 task rejected and 1 blocked, and 26 new Deep unit tests passing for 65 tests in total plus the scaffold smoke test.
+
+The remaining v2 Deep scope is the v1.1 backlog in ROADMAP.md.
 
 ## Novelty
 
