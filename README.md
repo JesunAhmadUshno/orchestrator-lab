@@ -2,7 +2,7 @@
 
 Multi-agent orchestration: one supervisor, a task graph, parallel workers, cost and quality routing.
 
-Status: Learn DONE (2026-11-05, ROADMAP-V3-BATCH). Level 1 is built, tested, and measured below. Build and Deep are not started.
+Status: Learn and Build DONE (2026-11-05, ROADMAP-V3-BATCH). Levels 1 and 2 are built, tested, and measured below. Deep is not started.
 Project: P08. Fleet node: BlackBoxV2. Wave: Wave 4. Learn was run on the Muse VM (CPU); see the level README for the named deduction.
 
 ## Start here
@@ -32,6 +32,14 @@ Measured 2026-11-05 with level-1-learn/run_learn.py on the Muse VM, Python 3.12.
 | Steps used / trace | 13 steps used, 11 trace entries, run status partial |
 | Unit tests | 19 passed, plus the scaffold smoke test |
 | Determinism | results_learn.json identical across two runs (hash verified) |
+| Build scenario tasks | 12 tasks in 4 waves (wave sizes 3, 4, 3, 2), 4-worker thread pool |
+| Build tasks succeeded | 8 of 12 (B05 succeeded after 1 retry) |
+| Build tasks failed | 2 (B07 wall clock timeout after 3 attempts, B08 step budget) |
+| Build tasks blocked | 2 (B09 blocked by B07, B11 blocked by B08) |
+| Build total cost | 34 units over 13 attempts (3 retries, 3 timeout attempts) |
+| Build steps / trace | 13 steps used, 15 trace entries, backoff delays 0.04 seconds in total, run status partial |
+| Build unit tests | 39 passed in total (20 new Build tests plus 19 Learn tests), plus the scaffold smoke test |
+| Build determinism | results_build.json identical across two runs (sha256 3896acf5b5f9babe) |
 
 ## Novelty
 
