@@ -396,11 +396,11 @@ function Graph() {
   run.waves.forEach((w, wi) => w.forEach((id, i) => { pos[id] = [wi * colW + colW / 2, 40 + i * rowH + (H - 40 - w.length * rowH) / 2 + rowH / 2]; }));
   const r = recs[sel];
   return (
-    <section id="graph" className="card window reveal" data-title="task_graph.svg — 11 tasks, 4 waves">
+    <section id="graph" className="card window reveal" data-title={`task_graph.svg — ${run.tasks.length} tasks, ${run.waves.length} waves`}>
       <div className="head">
         <div>
           <p className="eyebrow">Recorded task graph</p>
-          <h2>Four waves, coloured by what <em>actually happened</em> to each task.</h2>
+          <h2>{run.waves.length} waves, coloured by what <em>actually happened</em> to each task.</h2>
           <p className="sub">Columns are topological waves. Lines are dependencies. Rejecting one task blocks everything downstream of it. Click a task to open its recorded record.</p>
         </div>
         <Seg label="Strategy shown" value={strategy} onChange={setStrategy} options={STRATEGIES.map((s) => [s, LABEL[s]])} />
