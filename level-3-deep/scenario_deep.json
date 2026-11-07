@@ -1,0 +1,158 @@
+{
+  "simulated_reject_ids": [
+    "D09"
+  ],
+  "tasks": [
+    {
+      "dependencies": [],
+      "difficulty": 1,
+      "estimated_difficulty": 1,
+      "id": "D01",
+      "large_cost": 5,
+      "name": "outline",
+      "payload": "scope method results",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Planner"
+    },
+    {
+      "dependencies": [],
+      "difficulty": 2,
+      "estimated_difficulty": 2,
+      "id": "D02",
+      "large_cost": 5,
+      "name": "gather_numbers",
+      "payload": "sales rose in the north region",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Researcher"
+    },
+    {
+      "dependencies": [],
+      "difficulty": 1,
+      "estimated_difficulty": 1,
+      "id": "D09",
+      "large_cost": 5,
+      "name": "publish_external_summary",
+      "payload": "external summary draft for release",
+      "requires_approval": true,
+      "small_cost": 2,
+      "worker": "Writer"
+    },
+    {
+      "dependencies": [
+        "D01",
+        "D02"
+      ],
+      "difficulty": 3,
+      "estimated_difficulty": 3,
+      "id": "D03",
+      "large_cost": 5,
+      "name": "deep_analysis",
+      "payload": "numbers show a steady climb over time",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Analyst"
+    },
+    {
+      "dependencies": [
+        "D01"
+      ],
+      "difficulty": 2,
+      "estimated_difficulty": 2,
+      "id": "D06",
+      "large_cost": 5,
+      "name": "chart_spec",
+      "payload": "line chart of monthly totals",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Analyst"
+    },
+    {
+      "dependencies": [
+        "D02"
+      ],
+      "difficulty": 3,
+      "estimated_difficulty": 1,
+      "id": "D07",
+      "large_cost": 5,
+      "name": "subtle_fact_check",
+      "payload": "check every subtle claim once carefully",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Reviewer"
+    },
+    {
+      "dependencies": [
+        "D09"
+      ],
+      "difficulty": 2,
+      "estimated_difficulty": 2,
+      "id": "D10",
+      "large_cost": 5,
+      "name": "external_appendix",
+      "payload": "appendix for the external summary",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Writer"
+    },
+    {
+      "dependencies": [
+        "D03"
+      ],
+      "difficulty": 4,
+      "estimated_difficulty": 4,
+      "id": "D04",
+      "large_cost": 5,
+      "name": "risk_model",
+      "payload": "model the downside cases in full detail",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Analyst"
+    },
+    {
+      "dependencies": [
+        "D03"
+      ],
+      "difficulty": 5,
+      "estimated_difficulty": 5,
+      "id": "D05",
+      "large_cost": 5,
+      "name": "hard_proof",
+      "payload": "prove the central claim with no gaps left",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Reviewer"
+    },
+    {
+      "dependencies": [
+        "D03"
+      ],
+      "difficulty": 4,
+      "estimated_difficulty": 4,
+      "id": "D08",
+      "large_cost": 5,
+      "name": "release_review",
+      "payload": "review the release package end to end",
+      "requires_approval": true,
+      "small_cost": 2,
+      "worker": "Reviewer"
+    },
+    {
+      "dependencies": [
+        "D04",
+        "D05",
+        "D08"
+      ],
+      "difficulty": 2,
+      "estimated_difficulty": 2,
+      "id": "D11",
+      "large_cost": 5,
+      "name": "assemble_report",
+      "payload": "final assembled report package",
+      "requires_approval": false,
+      "small_cost": 2,
+      "worker": "Assembler"
+    }
+  ]
+}

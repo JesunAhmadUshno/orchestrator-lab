@@ -1,7 +1,8 @@
 """Run the Deep strategy comparison and write deterministic results.
 
 Run: python level-3-deep/run_deep.py
-Writes level-3-deep/results_deep.json. No timestamps and no wall
+Writes level-3-deep/results_deep.json and the scenario itself as
+data in level-3-deep/scenario_deep.json. No timestamps and no wall
 clock values are written, so two runs produce an identical file.
 The approver is a deterministic simulated approver that rejects
 D09 only. It is labelled simulated everywhere it appears; it is
@@ -13,7 +14,8 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from orchestrator_deep import SimulatedApprover, run_comparison  # noqa: E402
+from orchestrator_deep import (  # noqa: E402
+    SimulatedApprover, build_deep_scenario, run_comparison)
 
 
 def main():
@@ -55,6 +57,13 @@ def main():
         json.dump(out, f, indent=2, sort_keys=True)
         f.write("\n")
     print("Wrote", path)
+    scenario_path = os.path.join(HERE, "scenario_deep.json")
+    with open(scenario_path, "w", encoding="utf-8") as f:
+        json.dump({"tasks": build_deep_scenario(),
+                   "simulated_reject_ids": ["D09"]},
+                  f, indent=2, sort_keys=True)
+        f.write("\n")
+    print("Wrote", scenario_path)
     return 0
 
 

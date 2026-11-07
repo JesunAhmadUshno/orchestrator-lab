@@ -57,6 +57,7 @@ class DeepError(Exception):
 SMALL_QUALITY = {1: 0.95, 2: 0.90, 3: 0.70, 4: 0.55, 5: 0.40}
 LARGE_QUALITY = {1: 0.98, 2: 0.97, 3: 0.95, 4: 0.92, 5: 0.88}
 DEFAULT_THRESHOLD = 0.80
+DEFAULT_ROUTING_CUTOFF = 2
 STRATEGIES = ("all_small", "all_large", "routed")
 
 
@@ -167,14 +168,19 @@ def topological_order_deep(tasks):
     return order
 
 
-def choose_tier(task, strategy):
-    """Initial tier for a task under a strategy (routed uses estimate)."""
+def choose_tier(task, strategy, cutoff=DEFAULT_ROUTING_CUTOFF):
+    """Initial tier for a task under a strategy (routed uses estimate).
+
+    Under "routed", an estimated difficulty at most cutoff goes to
+    small. The default cutoff 2 is the shipped rule; other values
+    are used only by the sensitivity sweep in sweep_deep.py.
+    """
     if strategy == "all_small":
         return "small"
     if strategy == "all_large":
         return "large"
     if strategy == "routed":
-        return "small" if task["estimated_difficulty"] <= 2 else "large"
+        return "small" if task["estimated_difficulty"] <= cutoff else "large"
     raise DeepError("unknown strategy: '" + str(strategy) + "'")
 
 
@@ -182,13 +188,14 @@ class RoutedSupervisor:
     """Runs a Deep graph with routing, escalation, and approval gates."""
 
     def __init__(self, strategy="routed", quality_threshold=DEFAULT_THRESHOLD,
-                 approver=None):
+                 approver=None, routing_cutoff=DEFAULT_ROUTING_CUTOFF):
         if strategy not in STRATEGIES:
             raise DeepError("strategy must be one of: " + ", ".join(STRATEGIES))
         if not (0 < quality_threshold <= 1):
             raise DeepError("quality_threshold must be in (0, 1]")
         self.strategy = strategy
         self.quality_threshold = quality_threshold
+        self.routing_cutoff = routing_cutoff
         # Default approver approves everything; runners pass an
         # explicit simulated approver so the gate is visible.
         self.approver = approver if approver is not None else SimulatedApprover()
@@ -282,7 +289,7 @@ class RoutedSupervisor:
                 record["error"] = "rejected by approver (simulated)"
                 ev("approval_rejected", "simulated approver rejected task")
                 return record, events
-        tier = choose_tier(task, self.strategy)
+        tier = choose_tier(task, self.strategy, self.routing_cutoff)
         record["initial_tier"] = tier
         ev("routed", "initial tier " + tier + " under strategy " + self.strategy)
         output = toy_worker_deep(task, tier)
