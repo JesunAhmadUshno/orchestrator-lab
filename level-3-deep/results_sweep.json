@@ -1,0 +1,628 @@
+{
+  "estimation_error": {
+    "all_large_cost": 45,
+    "break_even_k_mean": null,
+    "break_even_k_worst_case": null,
+    "executed_tasks": [
+      "D01",
+      "D02",
+      "D03",
+      "D06",
+      "D07",
+      "D04",
+      "D05",
+      "D08",
+      "D11"
+    ],
+    "large_cost": 5,
+    "rows": [
+      {
+        "cost_max": 33,
+        "cost_mean": 33.0,
+        "cost_min": 33,
+        "cost_sum": 33,
+        "escalations_sum": 0,
+        "k": 0,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 1,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 35,
+        "cost_mean": 34.1111,
+        "cost_min": 33,
+        "cost_sum": 307,
+        "escalations_sum": 5,
+        "k": 1,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 9,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 37,
+        "cost_mean": 35.2222,
+        "cost_min": 33,
+        "cost_sum": 1268,
+        "escalations_sum": 40,
+        "k": 2,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 36,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 39,
+        "cost_mean": 36.3333,
+        "cost_min": 33,
+        "cost_sum": 3052,
+        "escalations_sum": 140,
+        "k": 3,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 84,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 41,
+        "cost_mean": 37.4444,
+        "cost_min": 33,
+        "cost_sum": 4718,
+        "escalations_sum": 280,
+        "k": 4,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 126,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 43,
+        "cost_mean": 38.5556,
+        "cost_min": 35,
+        "cost_sum": 4858,
+        "escalations_sum": 350,
+        "k": 5,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 126,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 43,
+        "cost_mean": 39.6667,
+        "cost_min": 37,
+        "cost_sum": 3332,
+        "escalations_sum": 280,
+        "k": 6,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 84,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 43,
+        "cost_mean": 40.7778,
+        "cost_min": 39,
+        "cost_sum": 1468,
+        "escalations_sum": 140,
+        "k": 7,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 36,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 43,
+        "cost_mean": 41.8889,
+        "cost_min": 41,
+        "cost_sum": 377,
+        "escalations_sum": 40,
+        "k": 8,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 9,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 43,
+        "cost_mean": 43.0,
+        "cost_min": 43,
+        "cost_sum": 43,
+        "escalations_sum": 5,
+        "k": 9,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 1,
+        "subsets_at_or_above_all_large": 0
+      }
+    ],
+    "small_cost": 2
+  },
+  "estimation_error_large_cost_4": {
+    "all_large_cost": 36,
+    "break_even_k_mean": 8,
+    "break_even_k_worst_case": 4,
+    "executed_tasks": [
+      "D01",
+      "D02",
+      "D03",
+      "D06",
+      "D07",
+      "D04",
+      "D05",
+      "D08",
+      "D11"
+    ],
+    "large_cost": 4,
+    "rows": [
+      {
+        "cost_max": 28,
+        "cost_mean": 28.0,
+        "cost_min": 28,
+        "cost_sum": 28,
+        "escalations_sum": 0,
+        "k": 0,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 1,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 30,
+        "cost_mean": 29.1111,
+        "cost_min": 28,
+        "cost_sum": 262,
+        "escalations_sum": 5,
+        "k": 1,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 9,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 32,
+        "cost_mean": 30.2222,
+        "cost_min": 28,
+        "cost_sum": 1088,
+        "escalations_sum": 40,
+        "k": 2,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 36,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 34,
+        "cost_mean": 31.3333,
+        "cost_min": 28,
+        "cost_sum": 2632,
+        "escalations_sum": 140,
+        "k": 3,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 84,
+        "subsets_at_or_above_all_large": 0
+      },
+      {
+        "cost_max": 36,
+        "cost_mean": 32.4444,
+        "cost_min": 28,
+        "cost_sum": 4088,
+        "escalations_sum": 280,
+        "k": 4,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 126,
+        "subsets_at_or_above_all_large": 5
+      },
+      {
+        "cost_max": 38,
+        "cost_mean": 33.5556,
+        "cost_min": 30,
+        "cost_sum": 4228,
+        "escalations_sum": 350,
+        "k": 5,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 126,
+        "subsets_at_or_above_all_large": 21
+      },
+      {
+        "cost_max": 38,
+        "cost_mean": 34.6667,
+        "cost_min": 32,
+        "cost_sum": 2912,
+        "escalations_sum": 280,
+        "k": 6,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 84,
+        "subsets_at_or_above_all_large": 34
+      },
+      {
+        "cost_max": 38,
+        "cost_mean": 35.7778,
+        "cost_min": 34,
+        "cost_sum": 1288,
+        "escalations_sum": 140,
+        "k": 7,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 36,
+        "subsets_at_or_above_all_large": 26
+      },
+      {
+        "cost_max": 38,
+        "cost_mean": 36.8889,
+        "cost_min": 36,
+        "cost_sum": 332,
+        "escalations_sum": 40,
+        "k": 8,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 9,
+        "subsets_at_or_above_all_large": 9
+      },
+      {
+        "cost_max": 38,
+        "cost_mean": 38.0,
+        "cost_min": 38,
+        "cost_sum": 38,
+        "escalations_sum": 5,
+        "k": 9,
+        "quality_pass_max": 9,
+        "quality_pass_min": 9,
+        "subsets": 1,
+        "subsets_at_or_above_all_large": 1
+      }
+    ],
+    "small_cost": 2
+  },
+  "large_cost": [
+    {
+      "all_large": {
+        "cost": 27,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "large_cost": 3,
+      "routed": {
+        "cost": 25,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "all_large": {
+        "cost": 36,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "large_cost": 4,
+      "routed": {
+        "cost": 30,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "large_cost": 5,
+      "routed": {
+        "cost": 35,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "all_large": {
+        "cost": 54,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "large_cost": 6,
+      "routed": {
+        "cost": 40,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "all_large": {
+        "cost": 63,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "large_cost": 7,
+      "routed": {
+        "cost": 45,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "all_large": {
+        "cost": 72,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "large_cost": 8,
+      "routed": {
+        "cost": 50,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    }
+  ],
+  "note": "Sensitivity sweeps on the Deep toy scenario: fixed quality table, deterministic toy workers, simulated approver that rejects D09 only. Not a real model result.",
+  "routing_cutoff": [
+    {
+      "cutoff": 1,
+      "routed": {
+        "cost": 44,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "cutoff": 2,
+      "routed": {
+        "cost": 35,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "cutoff": 3,
+      "routed": {
+        "cost": 37,
+        "escalations": 2,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "cutoff": 4,
+      "routed": {
+        "cost": 41,
+        "escalations": 4,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    },
+    {
+      "cutoff": 5,
+      "routed": {
+        "cost": 43,
+        "escalations": 5,
+        "quality_fail": 0,
+        "quality_pass": 9
+      }
+    }
+  ],
+  "threshold": [
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 3,
+        "quality_pass": 6
+      },
+      "routed": {
+        "cost": 30,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "threshold": 0.6
+    },
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 3,
+        "quality_pass": 6
+      },
+      "routed": {
+        "cost": 30,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "threshold": 0.65
+    },
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 3,
+        "quality_pass": 6
+      },
+      "routed": {
+        "cost": 30,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "threshold": 0.7
+    },
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "routed": {
+        "cost": 35,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "threshold": 0.75
+    },
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "routed": {
+        "cost": 35,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "threshold": 0.8
+    },
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "routed": {
+        "cost": 35,
+        "escalations": 1,
+        "quality_fail": 0,
+        "quality_pass": 9
+      },
+      "threshold": 0.85
+    },
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 1,
+        "quality_pass": 8
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 5,
+        "quality_pass": 4
+      },
+      "routed": {
+        "cost": 35,
+        "escalations": 1,
+        "quality_fail": 1,
+        "quality_pass": 8
+      },
+      "threshold": 0.9
+    },
+    {
+      "all_large": {
+        "cost": 45,
+        "escalations": 0,
+        "quality_fail": 3,
+        "quality_pass": 6
+      },
+      "all_small": {
+        "cost": 18,
+        "escalations": 0,
+        "quality_fail": 8,
+        "quality_pass": 1
+      },
+      "routed": {
+        "cost": 50,
+        "escalations": 4,
+        "quality_fail": 3,
+        "quality_pass": 6
+      },
+      "threshold": 0.95
+    }
+  ]
+}
