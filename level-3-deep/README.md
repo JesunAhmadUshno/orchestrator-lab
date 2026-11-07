@@ -141,12 +141,22 @@ passes.
   purpose. Real estimation error rates are unknown here, and
   a higher error rate would push routed cost toward, or past,
   all_large cost, because an escalated task costs 7, more
-  than the 5 of going large directly.
+  than the 5 of going large directly. Measured since in
+  results_sweep.json (sweep_deep.py, all 512 underestimation
+  subsets): at small cost 2 and large cost 5 routed stays
+  below all_large even with all 9 executed tasks
+  underestimated (worst case 43 against 45), because the 4
+  easy tasks still save 3 each; at large cost 4 the worst
+  case reaches all_large from 4 underestimated tasks. At a
+  quality threshold of 0.95 routed costs 50, more than
+  all_large at 45.
 - One escalation only: if the large tier also failed the
   threshold, the task would stand as a quality fail with no
   further retry, appeal, or fallback. In this table large
-  never fails, so that path is untested by the scenario and
-  is covered only as a rule in code.
+  never fails at the 0.80 threshold, so the scenario does not
+  reach that path. It is now covered by two unit tests in
+  tests/test_sweep_deep.py and by the threshold sweep, where
+  at 0.90 and above the large tier fails at difficulty 5.
 - Simulated approver: the gate callback is real, but the
   decider is a deterministic reject list, not a human, not a
   user interface, and not a persistent approval queue. A
@@ -183,6 +193,16 @@ Deductions (they sum to 1,800):
 - Router uses estimated difficulty alone, with one fixed
   threshold and one escalation, and no learned routing or
   cost forecasting: minus 100.
+
+## Sensitivity sweeps
+
+Run: python level-3-deep/sweep_deep.py (under a second).
+Writes results_sweep.json: the estimation-error sweep at large
+cost 5 and 4, a quality threshold sweep (0.60 to 0.95), a large
+tier cost sweep (3 to 8) and a routing cutoff sweep (1 to 5),
+all on the same toy table and simulated approver. The live
+dashboard reruns these in the browser and its build fails if
+the browser port disagrees with this file.
 
 ## What remains
 
