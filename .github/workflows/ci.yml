@@ -10,3 +10,5 @@ jobs:
           python-version: "3.12"
       - name: scaffold smoke test
         run: python tests/test_smoke.py
+      - name: unit tests
+        run: python -m unittest discover -s tests -v
