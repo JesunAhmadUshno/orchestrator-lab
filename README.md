@@ -2,6 +2,9 @@
 
 Multi-agent orchestration: one supervisor, a task graph, parallel workers, cost and quality routing.
 
+Live dashboard: https://jesunahmadushno.github.io/orchestrator-lab/
+(a live router and estimation-error sweep that rerun the Deep supervisor in the browser, checked against the Python results on every build; source in site/).
+
 Status: Learn, Build, and Deep DONE (2026-11-05, ROADMAP-V3-BATCH). All three levels are built, tested, and measured below. v1.0 shipped.
 Project: P08. Fleet node: BlackBoxV2. Wave: Wave 4. All levels were run on the Muse VM (CPU); see the level READMEs for the named deduction.
 
@@ -48,6 +51,8 @@ Measured 2026-11-05 with level-1-learn/run_learn.py on the Muse VM, Python 3.12.
 | Deep unit tests | 65 passed in total (26 new Deep tests plus 39 earlier tests), plus the scaffold smoke test |
 | Deep determinism | results_deep.json identical across two runs (sha256 399d9c659dd12825) |
 | Deep grade | 8,200 of 10,000 (deductions in level-3-deep/README.md) |
+| Deep sweeps (2026-11-07) | level-3-deep/sweep_deep.py over all 512 underestimation subsets: oracle routed 33; worst case 43, below all_large 45, at costs 2 and 5; at large cost 4 the worst case reaches all_large from 4 underestimated tasks; at threshold 0.95 routed costs 50 |
+| Unit tests (2026-11-07) | 75 passed (10 new sweep and large-tier-fail tests), now run in CI on every push |
 
 ## Deep
 
@@ -55,7 +60,7 @@ Deep adds cost and quality routing, human approval gates, and full run traces. T
 
 Main claim: Deep ran one deterministic 11-task scenario under three strategies on the Muse VM: routed cost 35 units with 9 of 9 executed tasks passing the 0.80 quality threshold and 1 escalation, against all_large at 45 units with 9 passes and all_small at 18 units with 4 passes and 5 quality fails; in every strategy 2 approvals were requested, 1 granted, 1 rejected, with 1 task rejected and 1 blocked, and 26 new Deep unit tests passing for 65 tests in total plus the scaffold smoke test.
 
-The remaining v2 Deep scope is the v1.1 backlog in ROADMAP.md.
+The remaining v2 Deep scope is the v1.1 backlog in ROADMAP.md. A graded research review, with each gap fixed or its needed compute named, is in docs/research-review.md.
 
 ## Novelty
 
