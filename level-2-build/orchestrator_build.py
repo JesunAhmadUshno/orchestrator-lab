@@ -10,8 +10,8 @@ with future.result(timeout=task timeout), counted from submit
 time. If the deadline passes, the attempt is recorded as timed
 out. Python threads cannot be killed, so a timed out toy worker
 thread is abandoned (its late result is discarded) and the pool
-is shut down without waiting for it. That limit is named in the
-level README.
+is shut down without waiting for it. That limit is named in
+REPORT.md, stage 2.
 
 Retries: transient failures and timeouts are retried up to
 max_retries times, with exponential backoff delays of
@@ -295,7 +295,7 @@ class ParallelSupervisor:
 def build_parallel_scenario():
     """The Build scenario: one parallel report pipeline, 12 tasks.
 
-    Hand-computed expectations (see the level README):
+    Hand-computed expectations (see REPORT.md, stage 2):
     waves are [B01, B02, B03], [B04, B05, B06, B07],
     [B08, B09, B10], [B11, B12]. B05 fails transiently on attempt 1
     and succeeds on its first retry. B07 sleeps 0.50 seconds against

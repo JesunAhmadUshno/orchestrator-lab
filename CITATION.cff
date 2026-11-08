@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "orchestrator-lab: a deterministic multi-agent supervisor with cost and quality routing and approval gates"
+authors:
+  - family-names: Ushno
+    given-names: Jesun Ahmad
+repository-code: "https://github.com/JesunAhmadUshno/orchestrator-lab"
+url: "https://jesunahmadushno.github.io/orchestrator-lab/"
+license: Apache-2.0
+version: "1.0"
+date-released: 2026-11-05

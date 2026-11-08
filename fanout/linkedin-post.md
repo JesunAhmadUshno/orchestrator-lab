@@ -19,13 +19,13 @@ toy functions at every level, not LLMs and not real agents.
 Learn: a validated task graph in dependency waves, one retry for
 a flaky task, a step budget, and blocking. On a 10-task scenario:
 8 succeeded, 1 failed on the step budget, 1 blocked, cost 28 over
-10 attempts, 13 steps. 19 tests. Grade 8,700 of 10,000.
+10 attempts, 13 steps. 19 tests.
 
 Build: the same graph on a 4-worker thread pool, with a wall
 clock timeout per attempt and backoff. On a 12-task scenario:
 8 succeeded, 2 failed (one timeout after 3 attempts, one step
 budget), 2 blocked, cost 34 over 13 attempts, backoff 0.04
-seconds in total. 39 tests in total. Grade 8,600 of 10,000.
+seconds in total. 39 tests in total.
 
 Deep (compressed): routing by estimated difficulty, one
 escalation on a failed quality check, and approval gates. On one
@@ -35,7 +35,7 @@ cost 45 with 9 passes; routed cost 35 with 9 passes, 0 fails,
 and 1 escalation. Routed saves 10 units, 22.2 percent of 45, at
 the same 9 passes. Approvals: 2 requested, 1 granted, 1
 rejected, with 1 task rejected and 1 blocked. 65 tests in total.
-Grade 8,200 of 10,000, with deductions named in the repo.
+Limits named in the repo.
 
 The honest limits, in the post and not in a footnote: toy
 workers only; synthetic designed scenarios only; Deep quality

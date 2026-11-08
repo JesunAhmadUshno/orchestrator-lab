@@ -27,12 +27,12 @@ for (const row of sweep.large_cost)
 for (const row of sweep.routing_cutoff)
   assert.deepEqual(strategyRow(runDeep(scenario.tasks, { ...base, cutoff: row.cutoff }).summary), row.routed, `cutoff ${row.cutoff}`);
 
-// 3. Headline saving and the determinism hashes recorded in the README.
+// 3. Headline saving and the determinism hashes recorded in REPORT.md.
 const saving = 1 - deep.comparison.routed.total_cost_units / deep.comparison.all_large.total_cost_units;
 assert.equal((saving * 100).toFixed(1), '22.2');
-const readme = read('README.md');
+const report = read('REPORT.md');
 for (const [file, label] of [['level-3-deep/results_deep.json', 'Deep determinism'], ['level-2-build/results_build.json', 'Build determinism']]) {
-  const rec = readme.match(new RegExp(`${label} \\|[^|]*sha256 ([0-9a-f]+)`))[1];
-  assert.ok(createHash('sha256').update(read(file)).digest('hex').startsWith(rec), `${file} sha256 differs from README record ${rec}`);
+  const rec = report.match(new RegExp(`${label} \\|[^|]*sha256 ([0-9a-f]+)`))[1];
+  assert.ok(createHash('sha256').update(read(file)).digest('hex').startsWith(rec), `${file} sha256 differs from REPORT record ${rec}`);
 }
 console.log('router ok', { strategies: STRATEGIES.length, sweeps: 5, routed: deep.comparison.routed.total_cost_units, saving: (saving * 100).toFixed(1) });
