@@ -35,12 +35,11 @@ the measured work below.
 
 Present: v1.0 closes three levels on 2026-11-05. Learn built a
 wave supervisor with retries, a step budget, and blocked tasks
-on a 10-task scenario (grade 8,700 of 10,000). Build added a
+on a 10-task scenario. Build added a
 12-task parallel pipeline on a 4-worker thread pool with wall
-clock timeouts and backoff (grade 8,600 of 10,000). Compressed
+clock timeouts and backoff. Compressed
 Deep added cost and quality routing over two toy tiers, one
-escalation, and approval gates on an 11-task scenario (grade
-8,200 of 10,000).
+escalation, and approval gates on an 11-task scenario.
 
 Future: the rest of the v2 Deep scope is named in ROADMAP.md in
 the repo as the v1.1 backlog. It includes real model workers, a
@@ -78,8 +77,6 @@ blocked and costs 0.
 | Tests | 19, plus the scaffold smoke test |
 | Determinism | results_learn.json identical across two runs |
 
-Grade: 8,700 of 10,000, deductions itemized in the Learn README.
-
 ### Level 2, Build (release v0.5)
 
 Build runs each wave on a ThreadPoolExecutor with 4 workers,
@@ -98,8 +95,6 @@ trace merged in topological order.
 | Backoff | 0.04 seconds in total |
 | Tests | 20 Build, 39 in total, plus the smoke test |
 | Determinism | results_build.json identical across two runs |
-
-Grade: 8,600 of 10,000, deductions itemized in the Build README.
 
 ### Level 3, Deep, compressed (release v1.0)
 
@@ -125,13 +120,10 @@ equals 10 units, 22.2 percent of 45, at the same 9 passes.
 Tests: 26 Deep tests, 65 in total with Learn and Build.
 Determinism: results_deep.json identical across two runs.
 
-Grade: 8,200 of 10,000. Deductions are itemized in the Deep
-README: minus 700 for toy workers and table quality, minus 400
-for one designed scenario, minus 200 for running on the Muse VM
-instead of BlackBoxV2, minus 200 for sequential execution, minus
-200 for a simulated approver only, and minus 100 for a router
-that uses estimated difficulty alone. Total deductions 1,800,
-and 10,000 minus 1,800 is 8,200.
+Limits named in the Deep write-up: toy workers and table quality,
+one designed scenario, running on the Muse VM instead of
+BlackBoxV2, sequential execution, a simulated approver only, and
+a router that uses estimated difficulty alone.
 
 ## Honest limits
 
@@ -159,7 +151,7 @@ and 10,000 minus 1,800 is 8,200.
 - Compressed Deep is not the full v2 Deep scope. The remainder
   is the named v1.1 backlog in ROADMAP.md.
 - All levels ran on the Muse VM, not the assigned BlackBoxV2
-  node. That deduction is named in each level grade.
+  node.
 
 ## Where to go next
 

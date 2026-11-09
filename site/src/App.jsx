@@ -5,28 +5,30 @@ import scenario from '../../level-3-deep/scenario_deep.json';
 import build from '../../level-2-build/results_build.json';
 import learn from '../../level-1-learn/results_learn.json';
 import deepPy from '../../level-3-deep/orchestrator_deep.py?raw';
-import rootReadme from '../../README.md?raw';
-import learnReadme from '../../level-1-learn/README.md?raw';
-import buildReadme from '../../level-2-build/README.md?raw';
-import deepReadme from '../../level-3-deep/README.md?raw';
-import roadmap from '../../ROADMAP.md?raw';
+import readme from '../../README.md?raw';
+import report from '../../REPORT.md?raw';
+import proposal from '../../PROPOSAL.md?raw';
 import { parseConstants, runDeep, estimationSweep, STRATEGIES } from './router.js';
 
 const REPO = 'https://github.com/JesunAhmadUshno/orchestrator-lab';
 const blob = (p) => `${REPO}/blob/main/${p}`;
 const SHA = __SHA256__; // computed from the committed results files by vite.config.js at build time
 
-// Pull text straight out of the repo's Markdown so limits and grades are quoted, not retyped.
-const mdSection = (md, heading) => {
-  const i = md.indexOf(`\n## ${heading}`);
+// Pull text straight out of the repo's Markdown so limits and the verdict are quoted, not retyped.
+// level 2 = "## heading", level 3 = "### heading"; a section ends at the next heading of the same or higher level.
+const mdSection = (md, heading, level = 2) => {
+  const h = '#'.repeat(level);
+  const i = md.indexOf(`\n${h} ${heading}`);
   if (i < 0) return '';
   const rest = md.slice(i + 1);
-  const end = rest.indexOf('\n## ');
-  return end < 0 ? rest : rest.slice(0, end);
+  const end = rest.slice(1).search(new RegExp(`\\n#{1,${level}} `));
+  return end < 0 ? rest : rest.slice(0, end + 1);
 };
 const bullets = (text) => text.split('\n- ').slice(1).map((b) => b.split('\n\n')[0].replace(/\s*\n\s*/g, ' ').trim());
-const grade = (md) => md.match(/Grade: ([\d,]+) of ([\d,]+)/).slice(1);
-const RECORDED_ON = deepReadme.match(/DONE \((\d{4}-\d{2}-\d{2})\)/)[1];
+const STAGE = { learn: 'Stage 1, Learn', build: 'Stage 2, Build', deep: 'Stage 3, Deep' };
+const stageMd = (key) => { const i = report.indexOf(`\n## ${STAGE[key]}`); const s = report.slice(i + 1); const e = s.indexOf('\n## '); return e < 0 ? s : s.slice(0, e); };
+const RECORDED_ON = stageMd('deep').match(/DONE \((\d{4}-\d{2}-\d{2})\)/)[1];
+const VERDICT = readme.match(/\*\*Verdict\.\*\* ([^.;]+)(;[^.]*)?\./);
 
 const Q = parseConstants(deepPy);
 const DEFAULTS = { threshold: deep.quality_threshold, cutoff: Q.cutoff, small: scenario.tasks[0].small_cost, large: scenario.tasks[0].large_cost, rejectIds: scenario.simulated_reject_ids };
@@ -68,9 +70,8 @@ function MenuBar() {
     <div className="menubar" role="banner">
       <span className="apple" aria-hidden="true">◆</span>
       <a className="app" href="#top">Orchestrator Lab</a>
-      <a className="m" href={blob('SPEC.md')}>Spec</a>
-      <a className="m" href={blob('level-3-deep/README.md')}>Deep level</a>
-      <a className="m" href={blob('docs/research-review.md')}>Research review</a>
+      <a className="m" href={blob('PROPOSAL.md')}>Proposal</a>
+      <a className="m" href={blob('REPORT.md')}>Report</a>
       <span className="spacer" />
       <span className="status"><i /> Deterministic results</span>
       <a href={REPO}>GitHub ↗</a>
@@ -132,7 +133,7 @@ export default function App() {
       <Reproduce />
       <Dock />
       <footer>
-        Code: Apache-2.0. Every number on this page is read at build time from the committed <code>level-*/results_*.json</code>, <code>scenario_deep.json</code>, <code>orchestrator_deep.py</code> and the level READMEs; the router and the sweep rerun in your browser and are checked against the Python results on every build.
+        Code: Apache-2.0. Every number on this page is read at build time from the committed <code>level-*/results_*.json</code>, <code>scenario_deep.json</code>, <code>orchestrator_deep.py</code>, REPORT.md and the README; the router and the sweep rerun in your browser and are checked against the Python results on every build.
       </footer>
     </div>
   );
@@ -156,7 +157,7 @@ function Hero() {
       </p>
       <div className="actions">
         <a className="btn primary" href="#playground">Rerun the router</a>
-        <a className="btn ghost" href={blob('level-3-deep/README.md')}>Read the Deep level</a>
+        <a className="btn ghost" href={blob('REPORT.md')}>Read the report</a>
         <span className="hint">Reproduce with <code>python level-3-deep/run_deep.py</code></span>
       </div>
       <div className="tiles">
@@ -550,36 +551,36 @@ function BuildLearn() {
 }
 
 function Limits() {
-  const levels = { learn: ['Learn', learnReadme, 'level-1-learn/README.md'], build: ['Build', buildReadme, 'level-2-build/README.md'], deep: ['Deep', deepReadme, 'level-3-deep/README.md'] };
+  const levels = { learn: ['Learn', stageMd('learn')], build: ['Build', stageMd('build')], deep: ['Deep', stageMd('deep')] };
   const [lvl, setLvl] = useState('deep');
-  const [name, md, path] = levels[lvl];
-  const [g, of] = grade(md);
-  const deductions = bullets(mdSection(md, 'Grade'));
-  const backlog = bullets(mdSection(roadmap, 'v1.1 backlog'));
+  const [name, md] = levels[lvl];
+  const misses = bullets(mdSection(report, 'Misses and threats'));
+  const backlog = bullets(mdSection(proposal, 'Open work', 3));
   return (
     <section id="limits" className="card window reveal" data-title="README.md — failure modes and limits">
       <div className="head">
         <div>
-          <p className="eyebrow">Limits, threats and the repo's own grades</p>
+          <p className="eyebrow">Limits, threats and the verdict</p>
           <h2>What this does <em>not</em> show.</h2>
-          <p className="sub">Quoted from the level READMEs at build time. The grades are the repo's self-assessment, not an external review; the PhD-rubric review is in <a href={blob('docs/research-review.md')}>docs/research-review.md</a>.</p>
+          <p className="sub">Quoted from <a href={blob('REPORT.md')}>REPORT.md</a> and the README verdict at build time, so the page cannot drift from them.</p>
         </div>
         <Seg label="Level" value={lvl} onChange={setLvl} options={Object.entries(levels).map(([k, [n]]) => [k, n])} />
       </div>
       <div className="grid2">
         <div>
           <h3>Failure modes and limits ({name})</h3>
-          <ul className="limits">{bullets(mdSection(md, 'Failure modes and limits')).map((b) => <li key={b}>{b}</li>)}</ul>
+          <ul className="limits">{bullets(mdSection(md, 'Failure modes and limits', 3)).map((b) => <li key={b}>{b}</li>)}</ul>
         </div>
         <div>
           <div className="tile">
-            <div className="num">{g}<small> of {of}</small></div>
-            <div className="cap">self-assessed grade, {name} level (<a href={blob(path)}>{path}</a>)</div>
+            <div className="num">{VERDICT[1]}</div>
+            <div className="cap">verdict under the portfolio standard{VERDICT[2] ? `, ${VERDICT[2].slice(1).trim()}` : ''} (<a href={blob('README.md')}>README.md</a>)</div>
           </div>
-          <ul className="limits">{deductions.map((b) => <li key={b}>{b}</li>)}</ul>
+          <h3 style={{ marginTop: 16 }}>Misses and threats (REPORT.md)</h3>
+          <ul className="limits">{misses.map((b) => <li key={b}>{b}</li>)}</ul>
         </div>
       </div>
-      <h3 style={{ marginTop: 20 }}>v1.1 backlog (ROADMAP.md, not built)</h3>
+      <h3 style={{ marginTop: 20 }}>Open work (PROPOSAL.md, not built)</h3>
       <div className="docs" style={{ marginTop: 10 }}>
         {backlog.map((b) => { const [t, ...rest] = b.split(': '); return <div className="doc" key={t}><b>{t}</b><small>{rest.join(': ')}</small></div>; })}
       </div>
@@ -588,18 +589,18 @@ function Limits() {
 }
 
 function Reproduce() {
-  const recorded = (label) => rootReadme.match(new RegExp(`${label} \\|[^|]*sha256 ([0-9a-f]+)`))?.[1];
+  const recorded = (label) => report.match(new RegExp(`${label} \\|[^|]*sha256 ([0-9a-f]+)`))?.[1];
   const rows = Object.entries(SHA).map(([f, h]) => {
     const rec = f.includes('deep.json') ? recorded('Deep determinism') : f.includes('build.json') ? recorded('Build determinism') : null;
     return { f, h, rec };
   });
   const docs = [
-    ['SPEC.md', 'Spec', 'Scope and acceptance criteria'],
-    ['level-1-learn/README.md', 'Learn', 'Supervisor and waves'],
-    ['level-2-build/README.md', 'Build', 'Thread pool, timeouts, retries'],
-    ['level-3-deep/README.md', 'Deep', 'Routing and approval gates'],
-    ['docs/research-review.md', 'Research review', 'Graded gaps and fixes'],
-    ['NOVELTY.md', 'Novelty', 'Honest size of the claim'],
+    ['PROPOSAL.md', 'Proposal', 'Question, scope, novelty, next cycle'],
+    ['REPORT.md', 'Report', 'Hypotheses scored, each stage, review notes'],
+    ['level-1-learn/', 'Learn', 'Supervisor and waves'],
+    ['level-2-build/', 'Build', 'Thread pool, timeouts, retries'],
+    ['level-3-deep/', 'Deep', 'Routing and approval gates'],
+    ['CHANGELOG.md', 'Changelog', 'Releases and changes'],
   ];
   return (
     <section id="reproduce" className="card window reveal" data-title="Terminal — python level-3-deep/run_deep.py">
@@ -614,14 +615,14 @@ function Reproduce() {
       <h3 style={{ marginTop: 20 }}>sha256 of the committed results (computed at build)</h3>
       <div className="scroll-x">
         <table>
-          <thead><tr><th>File</th><th>sha256 (first 16)</th><th>README record</th></tr></thead>
+          <thead><tr><th>File</th><th>sha256 (first 16)</th><th>REPORT record</th></tr></thead>
           <tbody>{rows.map(({ f, h, rec }) => (
             <tr key={f}><td className="mono">{f}</td><td className="mono">{h.slice(0, 16)}</td><td>{rec ? <span className={h.startsWith(rec) ? 'ok' : 'no'}>{h.startsWith(rec) ? 'matches ' : 'differs from '}{rec}</span> : <span className="hint">no hash recorded</span>}</td></tr>
           ))}</tbody>
         </table>
       </div>
       <div className="docs" style={{ marginTop: 20 }}>
-        {docs.map(([p, t, d]) => <a key={p} href={blob(p)}><b>{t}</b><small>{d}</small></a>)}
+        {docs.map(([p, t, d]) => <a key={p} href={p.endsWith('/') ? `${REPO}/tree/main/${p}` : blob(p)}><b>{t}</b><small>{d}</small></a>)}
       </div>
     </section>
   );

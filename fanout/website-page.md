@@ -22,8 +22,7 @@ functions at every level, not LLMs and not real agents. Deep
 quality is a fixed table, and the Deep approver is simulated.
 
 Status: v1.0, 2026-11-05. Learn, Build, and compressed Deep are
-done. Total tests: 65, all passing at v1.0. Level grades: Learn
-8,700 of 10,000, Build 8,600 of 10,000, Deep 8,200 of 10,000.
+done. Total tests: 65, all passing at v1.0.
 
 ## Results
 

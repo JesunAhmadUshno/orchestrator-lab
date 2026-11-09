@@ -229,7 +229,7 @@ class Supervisor:
 def build_report_scenario():
     """The Learn scenario: one small report-building job, 10 tasks.
 
-    Hand-computed expectations (see the level README):
+    Hand-computed expectations (see REPORT.md, stage 1):
     waves are [T01, T02, T03], [T04, T05, T06], [T07, T08], [T09, T10].
     T05 is flaky (fails attempt 1, succeeds on the retry). T08 needs
     3 steps against a budget of 2, so it fails and T09 is blocked.

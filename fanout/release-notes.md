@@ -22,7 +22,6 @@ URL: https://github.com/JesunAhmadUshno/orchestrator-lab/releases/tag/v0.1
   entries, run status partial.
 - Tests: 19 unit tests in tests/test_learn_orchestrator.py, plus
   the scaffold smoke test.
-- Grade: 8,700 of 10,000, deductions itemized in the Learn README.
 - Limits carried in the release: toy workers, one designed
   scenario, sequential execution inside waves, step budget only
   with no wall clock timeout, no routing and no approval gates.
@@ -44,7 +43,6 @@ URL: https://github.com/JesunAhmadUshno/orchestrator-lab/releases/tag/v0.5
   delays totalling 0.04 seconds, 15 trace entries.
 - Tests: 20 Build unit tests, 39 in total with Learn, plus the
   scaffold smoke test.
-- Grade: 8,600 of 10,000, deductions itemized in the Build README.
 - Limits carried in the release: toy workers, one designed
   scenario, a timed out thread can be abandoned but not killed,
   thread pool only, no routing and no approval gates.
@@ -69,7 +67,5 @@ URL: https://github.com/JesunAhmadUshno/orchestrator-lab/releases/tag/v1.0
   1 rejected, with 1 task rejected and 1 blocked.
 - Tests: 26 Deep unit tests, 65 in total with Learn and Build,
   plus the scaffold smoke test.
-- Grade: 8,200 of 10,000, deductions itemized in the Deep README
-  (total deductions 1,800).
 - The rest of the v2 Deep scope is the v1.1 backlog in ROADMAP.md.
   It is not part of v1.0 and is not claimed by these notes.

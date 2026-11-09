@@ -1,92 +1,84 @@
 # orchestrator-lab
 
-Multi-agent orchestration: one supervisor, a task graph, parallel workers, cost and quality routing.
+**Question.** When one supervisor coordinates many workers over a task
+graph, does routing each task to a cheap or an expensive tier by
+estimated difficulty, with one escalation on a failed quality check,
+keep quality at lower cost than always using the expensive tier?
+
+**Headline.** On one designed 11-task toy scenario, routing by estimated difficulty cost 35 units against 45 for always using the large tier, at the same 9 of 9 quality passes (22.2 percent less); across all 512 patterns of underestimated tasks it stayed between 33 and 43 units, but at a strict 0.95 quality threshold it cost 50, more than always-large. The runs are deterministic, so these are exact counts with no sampling interval, and they say nothing about real models.
+
+**Field.** Software product. **Job family.** AI agent engineering.
+
+**Verdict.** Functional; not pre-registered. Tests pass in CI on Python
+3.11 and 3.12, one command re-runs every stage and fails if any results
+file changes, and the supervisor has run end to end on all three
+recorded scenarios (10, 12 and 11 tasks). No plan with hypotheses and
+pass lines was committed before code or results, so the repo is capped
+at Functional (METHOD section 7). Workers are deterministic toy
+functions, quality is a fixed table, and the approver is simulated.
+
+Scope: this repo is many agents coordinated (supervisor, task graph,
+parallel workers, routing, approval gates). One agent's internals is P07.
 
 Live dashboard: https://jesunahmadushno.github.io/orchestrator-lab/
-(a live router and estimation-error sweep that rerun the Deep supervisor in the browser, checked against the Python results on every build; source in site/).
+(a live router and estimation-error sweep that rerun the Deep supervisor
+in the browser, checked against the Python results on every build;
+source in site/).
 
-Status: Learn, Build, and Deep DONE (2026-11-05, ROADMAP-V3-BATCH). All three levels are built, tested, and measured below. v1.0 shipped.
-Project: P08. Fleet node: BlackBoxV2. Wave: Wave 4. All levels were run on the Muse VM (CPU); see the level READMEs for the named deduction.
+## Reproduce
 
-## Start here
+```text
+python level-1-learn/run_learn.py && python level-2-build/run_build.py && python level-3-deep/run_deep.py && python level-3-deep/sweep_deep.py && git diff --exit-code -- level-1-learn level-2-build level-3-deep
+python -m unittest discover -s tests -v
+```
 
-1. Read SPEC.md for scope and acceptance criteria.
-2. Read DOSSIER.md for the past, present, and future of this problem (v1).
-3. Read NOVELTY.md for the proposed novelty (DRAFT, pending the Jev claim_check gate).
-4. Start at level-1-learn/README.md, then level-2-build, then level-3-deep.
+Python 3 standard library only, no dependencies, no randomness, no
+timestamps in the results files. The first line re-runs every stage
+(about two seconds) and fails if any committed result changes; CI runs
+the same steps. The headline numbers are in
+level-3-deep/results_deep.json ("comparison") and
+level-3-deep/results_sweep.json ("estimation_error", "threshold").
 
-## Level map
+## Lifecycle
 
-- Level 1, Learn: the core idea, built small and clean, with a teaching path.
-- Level 2, Build: a real working system other people can run.
-- Level 3, Deep: benchmarks, optimization, evaluation, hard cases.
+- Question: DONE 2026-11-08
+- Proposal: OPEN 2026-11-08
+- Baseline: DONE 2026-11-05
+- Build: DONE 2026-11-05
+- Evaluate: OPEN 2026-11-08
+- Report: DONE 2026-11-08
+- Review: OPEN 2026-11-08
+- Release: OPEN 2026-11-08
 
-## Benchmarks
+The question was written down at migration (2026-11-08). SPEC.md came
+before the code but held scope only, so the proposal is not locked.
+Baseline is all_large and all_small on the same scenario. Evaluate stays
+open until the Software product profile is met (coverage report,
+dependency audit and secret scan) under a locked proposal. The tags
+v0.1, v0.5 and v1.0 are the old Learn, Build and Deep releases, not a
+v1.0 Released verdict under this standard.
 
-Measured 2026-11-05 with level-1-learn/run_learn.py on the Muse VM, Python 3.12. The workers are deterministic toy functions, not LLMs.
+## Layout
 
-| Test | Result |
+| Path | What it holds |
 | --- | --- |
-| Learn scenario tasks | 10 tasks in 4 waves (wave sizes 3, 3, 2, 2) |
-| Tasks succeeded | 8 of 10 (T05 succeeded after 1 retry) |
-| Tasks failed | 1 (T08, step budget exceeded: needs 3 steps, budget 2) |
-| Tasks blocked | 1 (T09, blocked by T08) |
-| Total cost | 28 units over 10 attempts (1 retry used) |
-| Steps used / trace | 13 steps used, 11 trace entries, run status partial |
-| Unit tests | 19 passed, plus the scaffold smoke test |
-| Determinism | results_learn.json identical across two runs (hash verified) |
-| Build scenario tasks | 12 tasks in 4 waves (wave sizes 3, 4, 3, 2), 4-worker thread pool |
-| Build tasks succeeded | 8 of 12 (B05 succeeded after 1 retry) |
-| Build tasks failed | 2 (B07 wall clock timeout after 3 attempts, B08 step budget) |
-| Build tasks blocked | 2 (B09 blocked by B07, B11 blocked by B08) |
-| Build total cost | 34 units over 13 attempts (3 retries, 3 timeout attempts) |
-| Build steps / trace | 13 steps used, 15 trace entries, backoff delays 0.04 seconds in total, run status partial |
-| Build unit tests | 39 passed in total (20 new Build tests plus 19 Learn tests), plus the scaffold smoke test |
-| Build determinism | results_build.json identical across two runs (sha256 3896acf5b5f9babe) |
-| Deep scenario tasks | 11 tasks in 4 waves, three strategies compared |
-| Deep routed | cost 35 units, 9 of 9 executed tasks pass quality, 1 escalation |
-| Deep all_large | cost 45 units, 9 quality passes, 0 escalations |
-| Deep all_small | cost 18 units, 4 quality passes, 5 quality fails, 0 escalations |
-| Deep approvals | 2 requested, 1 granted, 1 rejected in every strategy; 1 task rejected, 1 blocked |
-| Deep unit tests | 65 passed in total (26 new Deep tests plus 39 earlier tests), plus the scaffold smoke test |
-| Deep determinism | results_deep.json identical across two runs (sha256 399d9c659dd12825) |
-| Deep grade | 8,200 of 10,000 (deductions in level-3-deep/README.md) |
-| Deep sweeps (2026-11-07) | level-3-deep/sweep_deep.py over all 512 underestimation subsets: oracle routed 33; worst case 43, below all_large 45, at costs 2 and 5; at large cost 4 the worst case reaches all_large from 4 underestimated tasks; at threshold 0.95 routed costs 50 |
-| Unit tests (2026-11-07) | 75 passed (10 new sweep and large-tier-fail tests), now run in CI on every push |
+| PROPOSAL.md | Question, scope, prior work and novelty, the plans as committed (not pre-registered), and the next cycle |
+| REPORT.md | Hypotheses scored with misses, field profile, the method and results of each stage, the 2026-11-07 review notes |
+| CHANGELOG.md | Releases v0.1, v0.5, v1.0 and every change since |
+| level-1-learn/ | Code: wave supervisor (orchestrator.py, run_learn.py); results: results_learn.json |
+| level-2-build/ | Code: parallel task graph (orchestrator_build.py, run_build.py); results: results_build.json |
+| level-3-deep/ | Code: routing and approval gates (orchestrator_deep.py, run_deep.py, sweep_deep.py); scenario: scenario_deep.json; results: results_deep.json, results_sweep.json |
+| tests/ | Unit tests for every stage and the sweeps, and the layout test (run in CI) |
+| docs/decisions/ | Records of hard-to-reverse choices |
+| docs/publicity.md | Channel log for the fan-out drafts |
+| fanout/ | Dated 2026-11-05 drafts (blog, tutorial, page, post, paper brief, release notes); file references inside them use the pre-v2 layout |
+| site/ | The live dashboard, built from the files above; a JavaScript port must reproduce every recorded result before it builds |
 
-## Deep
-
-Deep adds cost and quality routing, human approval gates, and full run traces. The router sees estimated difficulty only: at most 2 routes to the small tier (cost 2), above 2 routes to the large tier (cost 5). A small tier output below the 0.80 quality threshold escalates once to the large tier, with the escalation recorded. Tasks flagged requires_approval are paused for an approver callback; the runner uses a deterministic simulated approver (labelled simulated, not a real human) that rejects D09 only, so D09 is rejected and its dependent D10 is blocked.
-
-Main claim: Deep ran one deterministic 11-task scenario under three strategies on the Muse VM: routed cost 35 units with 9 of 9 executed tasks passing the 0.80 quality threshold and 1 escalation, against all_large at 45 units with 9 passes and all_small at 18 units with 4 passes and 5 quality fails; in every strategy 2 approvals were requested, 1 granted, 1 rejected, with 1 task rejected and 1 blocked, and 26 new Deep unit tests passing for 65 tests in total plus the scaffold smoke test.
-
-The remaining v2 Deep scope is the v1.1 backlog in ROADMAP.md. A graded research review, with each gap fixed or its needed compute named, is in docs/research-review.md.
-
-## Novelty
-
-PROPOSED. See NOVELTY.md. The novelty text is a draft until the Jev claim_check gate passes on it.
-
-## Fan-out
-
-Written fan-out set for v1.0, dated 2026-11-05, in fanout/:
-
-- fanout/blog-post.md: "Many Hands, One Graph", the full
-  story with the main results claim gated by Jev claim_check
-  (model jev-1.13.0, noul 0.68, route REVIEW, no block).
-- fanout/tutorial.md: course module P08-orchestrator-lab. Every
-  command in it was executed and passed on 2026-11-05 (all three
-  runners, full suite at 65 tests).
-- fanout/website-page.md: project page copy only, not published.
-- fanout/linkedin-post.md: DRAFT NOT POSTED, link as the
-  first-comment line per the LinkedIn rule.
-- fanout/paper-candidate.md: cost and quality routing study at
-  CANDIDATE. Submission is Jesun's tap, nothing submitted.
-- fanout/release-notes.md: draft notes for the live releases
-  v0.1, v0.5, and v1.0.
-
-Publicity grades and the channel log are in PUBLICITY.md. Overall
-fan-out grade: 9,533 of 10,000. The loop never posts to social:
-all social channels are held with named reasons in PUBLICITY.md.
+The code keeps its stage folder names (decision 0001): code, scenario
+and results sit together per stage, so there is no separate src/,
+experiments/ or results/ folder. The runs are deterministic, so the
+results files are the evidence; the runners regenerate them byte for
+byte and CI fails on any difference.
 
 ## License
 

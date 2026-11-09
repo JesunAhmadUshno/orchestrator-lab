@@ -1,17 +1,16 @@
-# PUBLICITY: orchestrator-lab (P08)
+# Publicity log: orchestrator-lab (P08)
+
+Moved from PUBLICITY.md on 2026-11-08. Grades and the publicity rubric
+scores were removed (grades are internal).
 
 Publicity log under the documentation and publishing standard,
-Section 7. Every finished level produces its written fan-out set,
-each piece graded on the 1,000-point publicity rubric (accuracy 300,
-research 200, gap fit 200, clarity 150, reach format 150), ship line
-900. Drafts are prepared by the loop. Actual social posting follows
+Section 7. Every finished level produces its written fan-out set.
+Drafts are prepared by the loop. Actual social posting follows
 the standing platform rules and gates. The loop itself never posts
 to social.
 
 Fan-out set date: 2026-11-05. Project state: v1.0, Learn, Build,
-and compressed Deep done 2026-11-05, 65 tests passing. Level
-grades on record: Learn 8,700 of 10,000, Build 8,600 of 10,000,
-Deep 8,200 of 10,000. Deep detail: one designed 11-task scenario
+and compressed Deep done 2026-11-05, 65 tests passing. Deep detail: one designed 11-task scenario
 in 4 waves, 9 tasks executed per strategy: all_small cost 18 with
 4 quality passes and 5 fails; all_large cost 45 with 9 passes and
 0 fails; routed cost 35 with 9 passes, 0 fails, and 1 escalation
@@ -39,49 +38,6 @@ LLM was called at any level.
 | Video | Held: engine queue, January production for lab projects per the December Compression Protocol. No video was produced in this cycle. |
 | Book chapter | Draft angle in fanout/blog-post.md and SPEC.md ("Many Hands, One Graph"). Held: chapter draft follows the finished project set; not a published chapter. |
 | Paper candidate | Draft brief in fanout/paper-candidate.md (cost and quality routing study, toy-tier form). Submission is Jesun's tap. Nothing submitted, no venue contacted. The publications tracker is updated by the coordinator, not by this cycle. |
-
-## Publicity grades (1,000-point rubric, ship line 900)
-
-| Piece | Accuracy /300 | Research /200 | Gap fit /200 | Clarity /150 | Reach format /150 | Total /1000 |
-| --- | --- | --- | --- | --- | --- | --- |
-| fanout/blog-post.md | 295 | 188 | 194 | 145 | 140 | 962 |
-| fanout/tutorial.md | 298 | 185 | 195 | 148 | 142 | 968 |
-| fanout/website-page.md | 293 | 180 | 190 | 147 | 145 | 955 |
-| fanout/linkedin-post.md | 288 | 175 | 190 | 145 | 140 | 938 |
-| fanout/paper-candidate.md | 293 | 195 | 194 | 140 | 130 | 952 |
-| fanout/release-notes.md | 296 | 183 | 184 | 144 | 138 | 945 |
-
-All six pieces are at or above the 900 ship line. No piece was
-shipped ungraded. Overall fan-out grade: 9,533 of 10,000 (mean of
-the six piece totals, 953 of 1,000).
-
-## Named deductions (unclosable in this cycle)
-
-- Blog post, minus 38: research is condensed from DOSSIER.md v1,
-  whose prior art section is brief (minus 12 research); toy and
-  synthetic limits how far the results travel, stated in the piece
-  (minus 10 reach, minus 5 accuracy for reader interpretation
-  risk, minus 6 gap fit, minus 5 clarity).
-- Tutorial, minus 32: research framing is thinner than the blog by
-  design, because the module teaches runs rather than the field
-  (minus 15 research); no worked example beyond the shipped sets
-  (minus 5 gap fit, minus 2 clarity, minus 8 reach, minus 2
-  accuracy).
-- Website page, minus 45: condensed research (minus 20), condensed
-  gap framing (minus 10), and the page is copy only, not a live
-  page (minus 5 reach, minus 7 accuracy, minus 3 clarity).
-- LinkedIn post, minus 62: short form compresses the research and
-  the failure mode detail (minus 25 research, minus 12 accuracy,
-  minus 10 gap fit, minus 5 clarity, minus 10 reach, because the
-  post is a held draft and carries no live link in the body by rule).
-- Paper candidate, minus 48: this is a brief, not a drafted paper
-  (minus 20 reach, minus 10 clarity); venue is classed, not named
-  (minus 5 research, minus 6 gap fit, minus 7 accuracy for the
-  toy-tier evidence base the paper must carry).
-- Release notes, minus 55: notes summarise releases that already
-  exist, so research and gap framing are summary grade (minus 17
-  research, minus 16 gap fit); format is repo-bound (minus 12
-  reach, minus 4 accuracy, minus 6 clarity).
 
 ## Jev gate (2026-11-05)
 
