@@ -119,7 +119,7 @@ function Seg({ label, value, options, onChange }) {
 export default function App() {
   useReveal();
   return (
-    <div className="wrap">
+    <div className="wrap"><a className="skip" href="#top">Skip to content</a>
       <MenuBar />
       <div className="glow" aria-hidden="true" />
       <Hero />
@@ -134,7 +134,7 @@ export default function App() {
       <Dock />
       <footer>
         Code: Apache-2.0. Every number on this page is read at build time from the committed <code>level-*/results_*.json</code>, <code>scenario_deep.json</code>, <code>orchestrator_deep.py</code>, REPORT.md and the README; the router and the sweep rerun in your browser and are checked against the Python results on every build.
-      </footer>
+      <nav className="support" aria-label="Support this work"><a href="https://github.com/sponsors/JesunAhmadUshno">Sponsor this work</a><a href="https://github.com/sponsors/JesunAhmadUshno">Donate</a><a href="https://buymeacoffee.com/jesun">Buy Me a Coffee</a><a href="https://calendly.com/jesunahmadushno/30min">Work with me</a></nav></footer>
     </div>
   );
 }
@@ -142,7 +142,7 @@ export default function App() {
 function Hero() {
   const r = CMP.routed, L = CMP.all_large, S = CMP.all_small;
   return (
-    <header className="card hero window" id="top" data-title="orchestrator.app — overview">
+    <header className="card hero window" id="top" data-title="orchestrator.app - overview">
       <div className="head">
         <p className="eyebrow">Multi-agent orchestration · three levels · stdlib Python</p>
         <span className="pill warn">● Toy model, simulated approver</span>
@@ -178,7 +178,7 @@ function Compare() {
   const x = (c) => pad.l + (c / xmax) * (W - pad.l - pad.r);
   const y = (p) => pad.t + (1 - p / n) * (H - pad.t - pad.b);
   return (
-    <section id="compare" className="card window reveal" data-title="results_deep.json — strategy comparison">
+    <section id="compare" className="card window reveal" data-title="results_deep.json - strategy comparison">
       <p className="eyebrow">Recorded benchmark · {RECORDED_ON}</p>
       <h2>Same quality as going large every time, for <em>{(saving * 100).toFixed(1)}%</em> less.</h2>
       <p className="sub">
@@ -235,7 +235,7 @@ function Playground() {
   const reset = () => { setCutoff(DEFAULTS.cutoff); setThreshold(DEFAULTS.threshold); setSmall(DEFAULTS.small); setLarge(DEFAULTS.large); setEst(designedEscalation.estimated_difficulty); setReject(new Set(DEFAULTS.rejectIds)); };
   const toggle = (id) => setReject((r) => { const n = new Set(r); n.has(id) ? n.delete(id) : n.add(id); return n; });
   return (
-    <section id="playground" className="card window reveal" data-title="router.py — live in your browser">
+    <section id="playground" className="card window reveal" data-title="router.py - live in your browser">
       <div className="head">
         <div>
           <p className="eyebrow">Live router playground</p>
@@ -285,9 +285,9 @@ function Playground() {
               <tr key={t.task_id}>
                 <td><span className="mono">{t.task_id}</span> {t.name}</td>
                 <td>{t.estimated_difficulty} / {t.difficulty}</td>
-                <td>{t.initial_tier ? (t.escalated ? `${t.initial_tier} → ${t.final_tier}` : t.final_tier) : '—'}</td>
+                <td>{t.initial_tier ? (t.escalated ? `${t.initial_tier} → ${t.final_tier}` : t.final_tier) : '-'}</td>
                 <td>{t.cost_units_total}</td>
-                <td className={t.quality == null ? '' : t.quality_pass ? 'ok' : 'no'}>{t.quality == null ? '—' : t.quality.toFixed(2)}</td>
+                <td className={t.quality == null ? '' : t.quality_pass ? 'ok' : 'no'}>{t.quality == null ? '-' : t.quality.toFixed(2)}</td>
                 <td><span className="dot" style={{ background: OUT[outcome(t)][1] }} />{OUT[outcome(t)][0]}</td>
               </tr>
             ))}
@@ -314,7 +314,7 @@ function Sweep() {
   const be = res.break_even_k_worst_case, bm = res.break_even_k_mean;
   const last = rows[K];
   return (
-    <section id="sweep" className="card window reveal" data-title="sweep.js — estimation error, live">
+    <section id="sweep" className="card window reveal" data-title="sweep.js - estimation error, live">
       <div className="head">
         <div>
           <p className="eyebrow">Live sensitivity model</p>
@@ -397,7 +397,7 @@ function Graph() {
   run.waves.forEach((w, wi) => w.forEach((id, i) => { pos[id] = [wi * colW + colW / 2, 40 + i * rowH + (H - 40 - w.length * rowH) / 2 + rowH / 2]; }));
   const r = recs[sel];
   return (
-    <section id="graph" className="card window reveal" data-title={`task_graph.svg — ${run.tasks.length} tasks, ${run.waves.length} waves`}>
+    <section id="graph" className="card window reveal" data-title={`task_graph.svg - ${run.tasks.length} tasks, ${run.waves.length} waves`}>
       <div className="head">
         <div>
           <p className="eyebrow">Recorded task graph</p>
@@ -436,9 +436,9 @@ function Graph() {
             <div><dt>Depends on</dt><dd>{r.dependencies.join(', ') || 'nothing'}</dd></div>
             <div><dt>Difficulty est. / true</dt><dd>{r.estimated_difficulty} / {r.difficulty}</dd></div>
             <div><dt>Approval</dt><dd>{r.approval.replace('_', ' ')}</dd></div>
-            <div><dt>Tier</dt><dd>{r.initial_tier ? (r.escalated ? `${r.initial_tier} → ${r.final_tier}` : r.final_tier) : '—'}</dd></div>
+            <div><dt>Tier</dt><dd>{r.initial_tier ? (r.escalated ? `${r.initial_tier} → ${r.final_tier}` : r.final_tier) : '-'}</dd></div>
             <div><dt>Attempts / cost</dt><dd>{r.attempts} / {r.cost_units_total} units</dd></div>
-            <div><dt>Quality</dt><dd>{r.quality == null ? '—' : `${r.quality.toFixed(2)} ${r.quality_pass ? 'pass' : 'fail'}`}</dd></div>
+            <div><dt>Quality</dt><dd>{r.quality == null ? '-' : `${r.quality.toFixed(2)} ${r.quality_pass ? 'pass' : 'fail'}`}</dd></div>
             <div><dt>Error</dt><dd>{r.error || 'none'}</dd></div>
           </dl>
         </div>
@@ -467,7 +467,7 @@ function Trace() {
   }, [cur]);
   const tone = (e) => (/rejected|failed|blocked/.test(e) ? 'no' : /escalated/.test(e) ? 'warnc' : /passed|succeeded|granted/.test(e) ? 'ok' : '');
   return (
-    <section id="trace" className="card window reveal" data-title="trace.log — recorded replay">
+    <section id="trace" className="card window reveal" data-title="trace.log - recorded replay">
       <div className="head">
         <div>
           <p className="eyebrow">Recorded run, {RECORDED_ON} · replay, not live</p>
@@ -504,7 +504,7 @@ function BuildLearn() {
   const statusPill = (st) => <span className={`pill ${st === 'succeeded' ? 'good' : st === 'failed' ? 'bad' : 'warn'}`}>{st}</span>;
   return (
     <>
-      <section id="build" className="card window reveal" data-title="results_build.json — thread pool run">
+      <section id="build" className="card window reveal" data-title="results_build.json - thread pool run">
         <p className="eyebrow">Level 2, Build · recorded run</p>
         <h2>A real thread pool with timeouts, retries and <em>transitive blocking</em>.</h2>
         <p className="sub">
@@ -531,7 +531,7 @@ function BuildLearn() {
           </table>
         </div>
       </section>
-      <section className="card window reveal" data-title="results_learn.json — supervisor waves">
+      <section className="card window reveal" data-title="results_learn.json - supervisor waves">
         <p className="eyebrow">Level 1, Learn · recorded run</p>
         <h2>The core idea in {l.total_tasks} tasks: waves, one retry, a <em>step budget</em>.</h2>
         <p className="sub">{l.succeeded} succeeded, {l.failed} failed, {l.blocked} blocked; {l.total_cost_units} cost units over {l.total_attempts} attempts and {l.total_steps_used} steps. Tasks inside a wave run one after another at this level.</p>
@@ -557,7 +557,7 @@ function Limits() {
   const misses = bullets(mdSection(report, 'Misses and threats'));
   const backlog = bullets(mdSection(proposal, 'Open work', 3));
   return (
-    <section id="limits" className="card window reveal" data-title="README.md — failure modes and limits">
+    <section id="limits" className="card window reveal" data-title="README.md - failure modes and limits">
       <div className="head">
         <div>
           <p className="eyebrow">Limits, threats and the verdict</p>
@@ -603,7 +603,7 @@ function Reproduce() {
     ['CHANGELOG.md', 'Changelog', 'Releases and changes'],
   ];
   return (
-    <section id="reproduce" className="card window reveal" data-title="Terminal — python level-3-deep/run_deep.py">
+    <section id="reproduce" className="card window reveal" data-title="Terminal - python level-3-deep/run_deep.py">
       <p className="eyebrow">Reproduce it</p>
       <h2>Standard library only. Every result file rebuilds <em>byte for byte</em>.</h2>
       <ol className="steps" style={{ marginTop: 16 }}>
